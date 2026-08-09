@@ -1,0 +1,35 @@
+<header class="navbar" [class.scrolled]="isScrolled()">
+  <div class="navbar__container">
+
+    <a routerLink="/" class="navbar__brand" (click)="closeMenu()">
+  Vishal Rawat
+</a>
+
+    <nav class="navbar__links">
+      <a *ngFor="let link of navLinks"
+         [routerLink]="link.route"
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{ exact: link.route === '/' }"
+         class="navbar__link">
+        {{ link.label }}
+      </a>
+    </nav>
+
+    <button class="navbar__hamburger" (click)="toggleMenu()">
+      <span class="navbar__hamburger-line" [class.open]="isMenuOpen()"></span>
+      <span class="navbar__hamburger-line" [class.open]="isMenuOpen()"></span>
+      <span class="navbar__hamburger-line" [class.open]="isMenuOpen()"></span>
+    </button>
+
+  </div>
+
+  <nav class="navbar__mobile-menu" [class.open]="isMenuOpen()">
+    <a *ngFor="let link of navLinks"
+       [routerLink]="link.route"
+       routerLinkActive="active"
+       class="navbar__mobile-link"
+       (click)="closeMenu()">
+      {{ link.label }}
+    </a>
+  </nav>
+</header>

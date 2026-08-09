@@ -1,0 +1,17 @@
+@use 'variables' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-display;
+  font-weight: 600;
+  line-height: 1.2;
+  color: $text-primary;
+}
+
+body {
+  font-family: $font-body;
+  line-height: 1.6;
+}
+
+code, pre { font-family: $font-mono; }

@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@use 'styles/variables' as *;
+@use 'styles/typography';
+@use 'styles/animations';
+
+html {
+  @include mat.theme((
+    color: (theme-type: dark, primary: mat.$azure-palette),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background-color: #0D1B2A; color: #94A3B8; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0D1B2A; }
+::-webkit-scrollbar-thumb { background: #4FC3F7; border-radius: 9999px; }
+.section { padding: 96px 40px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+a { color: #4FC3F7; text-decoration: none; }

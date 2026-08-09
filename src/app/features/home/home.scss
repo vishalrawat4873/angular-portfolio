@@ -1,0 +1,245 @@
+@use 'variables' as *;
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+
+  // ── Content wrapper ─────────────────────────────────
+  &__content {
+    max-width: 720px;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  // ── Badge ───────────────────────────────────────────
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-sm;
+    background: rgba($accent, 0.08);
+    color: $accent;
+    border: 1px solid rgba($accent, 0.2);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: $radius-full;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: $radius-full;
+    background: $success;
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  // ── Name + Greeting ─────────────────────────────────
+  &__greeting {
+    font-size: 1.1rem;
+    color: $text-secondary;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__name {
+    font-family: $font-display;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    color: $text-primary;
+    line-height: 1.1;
+    margin-bottom: $spacing-md;
+    letter-spacing: -0.02em;
+  }
+
+  // ── Typewriter ──────────────────────────────────────
+  &__typewriter {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: $spacing-lg;
+    min-height: 2.2rem;
+    flex-wrap: wrap;
+  }
+
+  &__typewriter-prefix {
+    font-size: 1.25rem;
+    color: $text-secondary;
+  }
+
+  &__typewriter-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $accent;
+    min-width: 2px;
+  }
+
+  &__typewriter-cursor {
+    font-size: 1.25rem;
+    color: $accent;
+    font-weight: 300;
+    animation: blink 0.7s step-end infinite;
+    line-height: 1;
+  }
+
+  // ── Bio ─────────────────────────────────────────────
+  &__bio {
+    font-size: 1.05rem;
+    color: $text-secondary;
+    line-height: 1.8;
+    max-width: 580px;
+    margin-bottom: $spacing-xl;
+  }
+
+  // ── CTA Buttons ─────────────────────────────────────
+  &__actions {
+    display: flex;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: 11px 24px;
+    border-radius: $radius-md;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-family: $font-body;
+    border: none;
+    cursor: pointer;
+
+    i { font-size: 1rem; }
+
+    &--primary {
+      background: $accent;
+      color: $primary-dark;
+
+      &:hover {
+        background: $accent-hover;
+        color: $primary-dark;
+        transform: translateY(-2px);
+      }
+    }
+
+    &--secondary {
+      background: transparent;
+      color: $accent;
+      border: 1.5px solid $accent;
+
+      &:hover {
+        background: rgba($accent, 0.08);
+        transform: translateY(-2px);
+      }
+    }
+
+    &--ghost {
+      background: transparent;
+      color: $text-secondary;
+      border: 1.5px solid $border-color;
+
+      &:hover {
+        border-color: $accent;
+        color: $accent;
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  // ── Stats ────────────────────────────────────────────
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-md;
+    margin-bottom: $spacing-2xl;
+
+    @media (max-width: $bp-sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__stat {
+    background: $primary-mid;
+    border: 1px solid $border-color;
+    border-radius: $radius-lg;
+    padding: $spacing-lg;
+    text-align: center;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      border-color: rgba($accent, 0.4);
+      transform: translateY(-3px);
+    }
+  }
+
+  &__stat-value {
+    display: block;
+    font-family: $font-display;
+    font-size: 2rem;
+    font-weight: 700;
+    color: $text-primary;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  &__stat-suffix {
+    color: $accent;
+  }
+
+  &__stat-label {
+    display: block;
+    font-size: 0.75rem;
+    color: $text-muted;
+    line-height: 1.4;
+  }
+
+  // ── Divider ──────────────────────────────────────────
+  &__divider {
+    border: none;
+    border-top: 1px solid $border-color;
+    margin-bottom: $spacing-xl;
+  }
+
+  // ── Tech stack ───────────────────────────────────────
+  &__tech-label {
+    font-size: 0.75rem;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: $spacing-md;
+  }
+
+  &__techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+
+  &__tech {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: $primary-mid;
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+    padding: 6px 14px;
+    font-size: 0.825rem;
+    color: $text-secondary;
+    transition: border-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      border-color: rgba($accent, 0.4);
+      color: $text-primary;
+    }
+  }
+
+  &__tech-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: $radius-full;
+    flex-shrink: 0;
+  }
+}

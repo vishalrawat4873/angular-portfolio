@@ -1,0 +1,80 @@
+<section class="hero section">
+  <div class="container">
+    <div class="hero__content">
+
+      <!-- Availability badge -->
+      <div class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        Available for opportunities
+      </div>
+
+      <!-- Greeting + Name -->
+      <p class="hero__greeting">Hi, I'm</p>
+      <h1 class="hero__name">Vishal Rawat</h1>
+
+      <!-- Typewriter -->
+      <div class="hero__typewriter">
+        <span class="hero__typewriter-prefix">I'm a&nbsp;</span>
+        <span class="hero__typewriter-text">{{ currentRole() }}</span>
+        <span class="hero__typewriter-cursor">|</span>
+      </div>
+
+      <!-- Bio -->
+      <p class="hero__bio">
+        A passionate Full Stack Developer and YouTube Content Creator
+        with hands-on experience building web applications using
+        Angular, ASP.NET, and SQL Server. I love turning complex
+        problems into clean, scalable solutions — and sharing what
+        I learn with 3K+ subscribers.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="hero__actions">
+        <a routerLink="/projects" class="hero__btn hero__btn--primary">
+          <i class="ti ti-folder" aria-hidden="true"></i>
+          View projects
+        </a>
+        <a href="/assets/vishal-rawat-cv.pdf" target="_blank"
+           class="hero__btn hero__btn--secondary">
+          <i class="ti ti-download" aria-hidden="true"></i>
+          Download CV
+        </a>
+        <a href="https://www.youtube.com/@vishalrawat770"
+           target="_blank"
+           class="hero__btn hero__btn--ghost">
+          <i class="ti ti-brand-youtube" aria-hidden="true"></i>
+          YouTube
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="hero__stats">
+        @for (stat of stats; track stat.label) {
+          <div class="hero__stat">
+            <span class="hero__stat-value">
+              {{ stat.value }}<span class="hero__stat-suffix">{{ stat.suffix }}</span>
+            </span>
+            <span class="hero__stat-label">{{ stat.label }}</span>
+          </div>
+        }
+      </div>
+
+      <!-- Divider -->
+      <div class="hero__divider"></div>
+
+      <!-- Tech stack -->
+      <p class="hero__tech-label">Tech stack</p>
+      <div class="hero__techs">
+        @for (tech of techs; track tech.name) {
+          <div class="hero__tech">
+            <span class="hero__tech-dot"
+                  [style.background]="tech.color">
+            </span>
+            {{ tech.name }}
+          </div>
+        }
+      </div>
+
+    </div>
+  </div>
+</section>

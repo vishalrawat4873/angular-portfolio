@@ -1,0 +1,135 @@
+<section class="contact section">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="contact__header">
+      <span class="contact__badge">Get in touch</span>
+      <h1 class="contact__title">Let's work together</h1>
+      <p class="contact__subtitle">
+        I'm currently open to full-time and freelance opportunities.
+        Whether you have a project in mind, want to collaborate, or just
+        want to say hello — my inbox is always open.
+      </p>
+    </div>
+
+    <!-- Contact cards grid -->
+    <div class="contact__links">
+      @for (link of contactLinks; track link.label) {
+        <a [href]="link.url" target="_blank" class="contact__card">
+          <div class="contact__card-icon" [class]="link.colorClass">
+            <i class="ti {{ link.icon }}" aria-hidden="true"></i>
+          </div>
+          <div class="contact__card-info">
+            <span class="contact__card-label">{{ link.label }}</span>
+            <span class="contact__card-value">{{ link.value }}</span>
+          </div>
+          <i class="ti ti-external-link contact__card-arrow" aria-hidden="true"></i>
+        </a>
+      }
+    </div>
+
+    <div class="contact__divider"></div>
+
+    <!-- Form -->
+    <div class="contact__form-card">
+
+      <!-- Availability status -->
+      <div class="contact__status">
+        <span class="contact__status-dot"></span>
+        <span class="contact__status-text">Available for new opportunities</span>
+      </div>
+
+      @if (isSubmitted()) {
+        <div class="contact__success">
+          <i class="ti ti-circle-check" aria-hidden="true"></i>
+          <div>
+            <p class="contact__success-title">Message sent!</p>
+            <p class="contact__success-sub">I'll get back to you within 24 hours.</p>
+          </div>
+        </div>
+      } @else {
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+          <div class="contact__form-row">
+            <div class="contact__field">
+              <label for="name">Your name</label>
+              <input
+                id="name"
+                type="text"
+                formControlName="name"
+                placeholder="John Doe"
+                [class.invalid]="isFieldInvalid('name')"
+              />
+              @if (isFieldInvalid('name')) {
+                <span class="contact__error">Please enter your name</span>
+              }
+            </div>
+
+            <div class="contact__field">
+              <label for="email">Your email</label>
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                placeholder="john@company.com"
+                [class.invalid]="isFieldInvalid('email')"
+              />
+              @if (isFieldInvalid('email')) {
+                <span class="contact__error">Please enter a valid email</span>
+              }
+            </div>
+          </div>
+
+          <div class="contact__field">
+            <label for="purpose">What are you looking for?</label>
+            <select id="purpose" formControlName="purpose">
+              @for (option of purposeOptions; track option) {
+                <option [value]="option">{{ option }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="contact__field">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              formControlName="message"
+              placeholder="Tell me about your project or opportunity..."
+              rows="5"
+              [class.invalid]="isFieldInvalid('message')"
+            ></textarea>
+            @if (isFieldInvalid('message')) {
+              <span class="contact__error">Message must be at least 10 characters</span>
+            }
+          </div>
+
+          <button
+            type="submit"
+            class="contact__submit"
+            [disabled]="isSubmitting()"
+          >
+            @if (isSubmitting()) {
+              <i class="ti ti-loader-2 spin" aria-hidden="true"></i>
+              Sending...
+            } @else {
+              <i class="ti ti-send" aria-hidden="true"></i>
+              Send message
+            }
+          </button>
+
+        </form>
+      }
+
+      <!-- Social links -->
+      <div class="contact__socials">
+        @for (s of socialLinks; track s.label) {
+          <a [href]="s.url" target="_blank" class="contact__social-btn">
+            <i class="ti {{ s.icon }}" aria-hidden="true"></i>
+            {{ s.label }}
+          </a>
+        }
+      </div>
+
+    </div>
+  </div>
+</section>

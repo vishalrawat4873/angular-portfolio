@@ -1,0 +1,187 @@
+<section class="about section">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="about__header">
+      <span class="about__badge">
+        <i class="ti ti-user" aria-hidden="true"></i>
+        About me
+      </span>
+      <h1 class="about__title">Passionate about building things</h1>
+      <p class="about__subtitle">
+        Full Stack Developer based in Ahmedabad · Open to full-time opportunities
+      </p>
+    </div>
+
+    <!-- Top: Bio + Avatar -->
+    <div class="about__top">
+
+      <div class="about__bio">
+        <p>
+          I'm <strong>Vishal Rawat</strong>, a Full Stack Developer skilled in
+          Angular, ASP.NET Core, C#, TypeScript, and SQL Server. I build scalable
+          web applications with secure APIs and clean architecture.
+        </p>
+        <p>
+          Currently working at <span class="about__highlight">Evince Development</span>,
+          I've gained hands-on production experience — from database design to
+          responsive Angular UIs with JWT-based authentication.
+        </p>
+        <p>
+          Outside of work, I run a YouTube channel with
+          <span class="about__highlight">2.8K+ subscribers</span> where I share
+          my tech learning journey. I'm also NCC certified (A Grade) which shaped
+          my discipline and leadership skills.
+        </p>
+
+        <!-- Meta info -->
+        <div class="about__meta">
+          <div class="about__meta-item">
+            <i class="ti ti-map-pin" aria-hidden="true"></i>
+            Ahmedabad, Gujarat, India
+          </div>
+          <div class="about__meta-item">
+            <i class="ti ti-mail" aria-hidden="true"></i>
+            vishalrawatssr@gmail.com
+          </div>
+          <div class="about__meta-item">
+            <i class="ti ti-brand-youtube" aria-hidden="true"></i>
+            2.8K+ YouTube subscribers
+          </div>
+          <div class="about__meta-item">
+            <i class="ti ti-circle-check" aria-hidden="true"></i>
+            Available for new opportunities
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="about__actions">
+          <a href="/assets/vishal-rawat-cv.pdf"
+             target="_blank"
+             class="about__btn about__btn--primary">
+            <i class="ti ti-download" aria-hidden="true"></i>
+            Download CV
+          </a>
+          <a routerLink="/contact" class="about__btn about__btn--secondary">
+            <i class="ti ti-send" aria-hidden="true"></i>
+            Get in touch
+          </a>
+        </div>
+      </div>
+
+      <!-- Avatar -->
+      <div class="about__avatar">
+        <div class="about__avatar-inner">VR</div>
+        <div class="about__avatar-ring"></div>
+      </div>
+
+    </div>
+
+    <!-- What I do cards -->
+    <div class="about__section-label">What I do</div>
+    <div class="about__cards">
+      @for (item of whatIDo; track item.title) {
+        <div class="about__card">
+          <i class="ti {{ item.icon }} about__card-icon" aria-hidden="true"></i>
+          <h3 class="about__card-title">{{ item.title }}</h3>
+          <p class="about__card-desc">{{ item.description }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="about__divider"></div>
+
+    <!-- Skills -->
+    <div class="about__section-label">Skills</div>
+    <div class="about__skills">
+      @for (group of skillGroups; track group.category) {
+        <div class="about__skill-group">
+          <span class="about__skill-category">{{ group.category }}</span>
+          <div class="about__skill-chips">
+            @for (skill of group.skills; track skill) {
+              <span class="about__chip">{{ skill }}</span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="about__divider"></div>
+
+    <!-- Experience timeline -->
+    <div class="about__section-label">Experience</div>
+    <div class="about__timeline">
+      @for (exp of experiences; track exp.role + exp.period; let last = $last) {
+        <div class="about__tl-item">
+          <div class="about__tl-line">
+            <div class="about__tl-dot"
+                 [class.about__tl-dot--current]="exp.isCurrent">
+            </div>
+            @if (!last) {
+              <div class="about__tl-tail"></div>
+            }
+          </div>
+          <div class="about__tl-content">
+            <div class="about__tl-header">
+              <div>
+                <h3 class="about__tl-role">{{ exp.role }}</h3>
+                <span class="about__tl-company">{{ exp.company }}</span>
+              </div>
+              <div class="about__tl-meta">
+                <span class="about__tl-period">{{ exp.period }}</span>
+                <span class="about__tl-location">
+                  <i class="ti ti-map-pin" aria-hidden="true"></i>
+                  {{ exp.location }}
+                </span>
+              </div>
+            </div>
+            <ul class="about__tl-points">
+              @for (point of exp.points; track point) {
+                <li>{{ point }}</li>
+              }
+            </ul>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="about__divider"></div>
+
+    <!-- Education + Certifications side by side -->
+    <div class="about__bottom-grid">
+
+      <div>
+        <div class="about__section-label">Education</div>
+        <div class="about__edu-list">
+          @for (edu of education; track edu.degree) {
+            <div class="about__edu-item">
+              <i class="ti ti-school about__edu-icon" aria-hidden="true"></i>
+              <div>
+                <p class="about__edu-degree">{{ edu.degree }}</p>
+                <p class="about__edu-institute">{{ edu.institute }}</p>
+                <p class="about__edu-period">{{ edu.period }} · {{ edu.location }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div>
+        <div class="about__section-label">Certifications</div>
+        <div class="about__cert-list">
+          @for (cert of certificates; track cert.title) {
+            <div class="about__cert-item">
+              <i class="ti ti-certificate about__cert-icon" aria-hidden="true"></i>
+              <div>
+                <p class="about__cert-title">{{ cert.title }}</p>
+                <p class="about__cert-meta">{{ cert.issuer }} · {{ cert.date }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

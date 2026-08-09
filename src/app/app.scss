@@ -1,0 +1,4 @@
+main {
+  min-height: calc(100vh - 64px);   // 64px = navbar height
+  padding-top: 64px;                 // push content below fixed navbar
+}

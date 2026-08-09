@@ -1,0 +1,448 @@
+@use 'variables' as *;
+
+.about {
+
+  // ── Header ───────────────────────────────────────────
+  &__header {
+    max-width: 600px;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba($accent, 0.08);
+    color: $accent;
+    border: 1px solid rgba($accent, 0.2);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: $radius-full;
+    margin-bottom: $spacing-md;
+  }
+
+  &__title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: $text-primary;
+    line-height: 1.15;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__subtitle {
+    font-size: 1rem;
+    color: $text-secondary;
+  }
+
+  // ── Top grid: bio + avatar ───────────────────────────
+  &__top {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: $spacing-2xl;
+    margin-bottom: $spacing-2xl;
+    align-items: start;
+
+    @media (max-width: $bp-md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__bio {
+    p {
+      font-size: 1rem;
+      color: $text-secondary;
+      line-height: 1.8;
+      margin-bottom: $spacing-md;
+    }
+  }
+
+  &__highlight {
+    color: $accent;
+    font-weight: 500;
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    margin-top: $spacing-lg;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__meta-item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    font-size: 0.875rem;
+    color: $text-secondary;
+
+    i {
+      color: $accent;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: 10px 22px;
+    border-radius: $radius-md;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+
+    i { font-size: 0.95rem; }
+
+    &--primary {
+      background: $accent;
+      color: $primary-dark;
+      &:hover { background: $accent-hover; color: $primary-dark; transform: translateY(-2px); }
+    }
+
+    &--secondary {
+      background: transparent;
+      color: $accent;
+      border: 1.5px solid $accent;
+      &:hover { background: rgba($accent, 0.08); transform: translateY(-2px); }
+    }
+  }
+
+  // ── Avatar ───────────────────────────────────────────
+  &__avatar {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    flex-shrink: 0;
+
+    @media (max-width: $bp-md) {
+      display: none;
+    }
+  }
+
+  &__avatar-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: $radius-xl;
+    background: $primary-mid;
+    border: 2px solid rgba($accent, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-display;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: $accent;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__avatar-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: calc($radius-xl + 6px);
+    border: 1px solid rgba($accent, 0.1);
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+
+  // ── Section label ────────────────────────────────────
+  &__section-label {
+    font-size: 0.75rem;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: $spacing-lg;
+  }
+
+  // ── What I do cards ──────────────────────────────────
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+    margin-bottom: $spacing-2xl;
+
+    @media (max-width: $bp-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__card {
+    background: $primary-mid;
+    border: 1px solid $border-color;
+    border-radius: $radius-lg;
+    padding: $spacing-lg;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      border-color: rgba($accent, 0.4);
+      transform: translateY(-3px);
+    }
+  }
+
+  &__card-icon {
+    font-size: 1.5rem;
+    color: $accent;
+    display: block;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__card-desc {
+    font-size: 0.85rem;
+    color: $text-secondary;
+    line-height: 1.6;
+  }
+
+  // ── Divider ──────────────────────────────────────────
+  &__divider {
+    border: none;
+    border-top: 1px solid $border-color;
+    margin: $spacing-2xl 0;
+  }
+
+  // ── Skills ───────────────────────────────────────────
+  &__skills {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__skill-group {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-lg;
+
+    @media (max-width: $bp-sm) {
+      flex-direction: column;
+      gap: $spacing-sm;
+    }
+  }
+
+  &__skill-category {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: $accent;
+    min-width: 100px;
+    padding-top: 4px;
+    flex-shrink: 0;
+  }
+
+  &__skill-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+  }
+
+  &__chip {
+    background: $primary-mid;
+    border: 1px solid $border-color;
+    border-radius: $radius-sm;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    color: $text-secondary;
+    transition: border-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      border-color: rgba($accent, 0.4);
+      color: $text-primary;
+    }
+  }
+
+  // ── Timeline ─────────────────────────────────────────
+  &__timeline {
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__tl-item {
+    display: flex;
+    gap: $spacing-lg;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__tl-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 16px;
+  }
+
+  &__tl-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: $radius-full;
+    background: rgba($accent, 0.3);
+    border: 2px solid rgba($accent, 0.3);
+    flex-shrink: 0;
+    margin-top: 4px;
+
+    &--current {
+      background: $accent;
+      border-color: $accent;
+      box-shadow: 0 0 0 4px rgba($accent, 0.15);
+    }
+  }
+
+  &__tl-tail {
+    width: 2px;
+    background: rgba($accent, 0.15);
+    flex: 1;
+    margin-top: 6px;
+    min-height: 40px;
+  }
+
+  &__tl-content {
+    flex: 1;
+    padding-bottom: $spacing-lg;
+  }
+
+  &__tl-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: $spacing-sm;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+
+  &__tl-role {
+    font-size: 1rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: 2px;
+  }
+
+  &__tl-company {
+    font-size: 0.875rem;
+    color: $accent;
+    font-weight: 500;
+  }
+
+  &__tl-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+
+    @media (max-width: $bp-sm) {
+      align-items: flex-start;
+    }
+  }
+
+  &__tl-period {
+    font-size: 0.8rem;
+    color: $text-secondary;
+  }
+
+  &__tl-location {
+    font-size: 0.75rem;
+    color: $text-muted;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+    i { font-size: 0.75rem; }
+  }
+
+  &__tl-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+
+    li {
+      font-size: 0.875rem;
+      color: $text-secondary;
+      line-height: 1.6;
+      padding-left: $spacing-md;
+      position: relative;
+
+      &::before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: $accent;
+        font-size: 0.7rem;
+        top: 3px;
+      }
+    }
+  }
+
+  // ── Bottom grid: education + certs ───────────────────
+  &__bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-2xl;
+
+    @media (max-width: $bp-md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__edu-list,
+  &__cert-list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__edu-item,
+  &__cert-item {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-md;
+    padding: $spacing-md;
+    background: $primary-mid;
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+    transition: border-color 0.2s ease;
+
+    &:hover { border-color: rgba($accent, 0.3); }
+  }
+
+  &__edu-icon,
+  &__cert-icon {
+    font-size: 1.2rem;
+    color: $accent;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  &__edu-degree,
+  &__cert-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: 2px;
+  }
+
+  &__edu-institute,
+  &__cert-meta {
+    font-size: 0.8rem;
+    color: $text-secondary;
+  }
+
+  &__edu-period {
+    font-size: 0.75rem;
+    color: $text-muted;
+    margin-top: 2px;
+  }
+}

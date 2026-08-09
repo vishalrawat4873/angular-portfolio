@@ -1,0 +1,200 @@
+@use '../../../styles/variables' as *;
+
+// ─── Base navbar ──────────────────────────────────────────
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 64px;
+  background: transparent;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+
+  // When user scrolls down — add background
+  &.scrolled {
+    background: rgba($primary-dark, 0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 $border-color;
+  }
+
+  // ─── Inner container ────────────────────────────────────
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-lg;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xl;
+  }
+
+  // ─── Brand / Logo ────────────────────────────────────────
+  &__brand {
+  font-family: $font-mono;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: $text-primary;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  cursor: default;
+
+  &:hover {
+    color: $text-primary;
+    text-decoration: none;
+  }
+
+  &-bracket {
+    color: $accent;
+  }
+}
+
+  // ─── Desktop links ───────────────────────────────────────
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+    margin-left: auto;   // push links to right
+
+    @media (max-width: $bp-md) {
+      display: none;
+    }
+  }
+
+  &__link {
+    font-family: $font-body;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: $text-secondary;
+    text-decoration: none;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $radius-sm;
+    transition: color 0.2s ease;
+    position: relative;
+
+    // Underline animation on hover
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: $accent;
+      border-radius: $radius-full;
+      transition: width 0.25s ease;
+    }
+
+    &:hover {
+      color: $text-primary;
+
+      &::after { width: 100%; }
+    }
+
+    // Active route styling
+    &.active {
+      color: $accent;
+
+      &::after { width: 100%; }
+    }
+  }
+
+  // ─── CTA button ──────────────────────────────────────────
+  &__cta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $accent;
+    border: 1.5px solid $accent;
+    padding: 8px 20px;
+    border-radius: $radius-md;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+
+    &:hover {
+      background: $accent;
+      color: $primary-dark;
+    }
+
+    &--mobile {
+      display: inline-block;
+      margin-top: $spacing-md;
+    }
+
+    @media (max-width: $bp-md) {
+      display: none;  // hide desktop CTA on mobile
+    }
+  }
+
+  // ─── Hamburger ───────────────────────────────────────────
+  &__hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 4px;
+
+    @media (max-width: $bp-md) {
+      display: flex;
+    }
+  }
+
+  &__hamburger-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: $text-primary;
+    border-radius: $radius-full;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+
+    // Animate to X when open
+    &.open {
+      &:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      &:nth-child(2) { opacity: 0; }
+      &:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    }
+  }
+
+  // ─── Mobile dropdown menu ────────────────────────────────
+  &__mobile-menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-lg;
+    background: rgba($primary-dark, 0.98);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid $border-color;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+
+    @media (max-width: $bp-md) {
+      display: flex;
+    }
+
+    &.open {
+      max-height: 400px;
+    }
+  }
+
+  &__mobile-link {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: $text-secondary;
+    text-decoration: none;
+    padding: $spacing-sm 0;
+    transition: color 0.2s ease;
+
+    &:hover,
+    &.active {
+      color: $accent;
+    }
+  }
+}

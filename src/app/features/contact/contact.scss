@@ -1,0 +1,313 @@
+@use 'variables' as *;
+
+.contact {
+
+  // ── Header ───────────────────────────────────────────────
+  &__header {
+    max-width: 600px;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__badge {
+    display: inline-block;
+    background: rgba($accent, 0.1);
+    color: $accent;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 4px 14px;
+    border-radius: $radius-full;
+    border: 1px solid rgba($accent, 0.2);
+    margin-bottom: $spacing-md;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: $text-primary;
+    line-height: 1.1;
+    margin-bottom: $spacing-md;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    color: $text-secondary;
+    line-height: 1.7;
+  }
+
+  // ── Contact cards ────────────────────────────────────────
+  &__links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+    margin-bottom: $spacing-2xl;
+
+    @media (max-width: $bp-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__card {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-md $spacing-lg;
+    background: $primary-mid;
+    border: 1px solid $border-color;
+    border-radius: $radius-lg;
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      border-color: $accent;
+      transform: translateY(-2px);
+
+      .contact__card-arrow { opacity: 1; }
+    }
+  }
+
+  &__card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: $radius-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.25rem;
+
+    &.icon--blue   { background: rgba($accent, 0.12);   color: $accent; }
+    &.icon--red    { background: rgba(#F44336, 0.12);   color: #EF5350; }
+    &.icon--purple { background: rgba(#9C27B0, 0.12);   color: #BA68C8; }
+    &.icon--green  { background: rgba($success, 0.12);  color: $success; }
+  }
+
+  &__card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__card-label {
+    font-size: 0.75rem;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__card-value {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: $text-primary;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__card-arrow {
+    font-size: 1rem;
+    color: $text-muted;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  // ── Divider ──────────────────────────────────────────────
+  &__divider {
+    border: none;
+    border-top: 1px solid $border-color;
+    margin-bottom: $spacing-2xl;
+  }
+
+  // ── Form card ────────────────────────────────────────────
+  &__form-card {
+    background: $primary-mid;
+    border: 1px solid $border-color;
+    border-radius: $radius-xl;
+    padding: $spacing-xl;
+    max-width: 720px;
+  }
+
+  // ── Status indicator ─────────────────────────────────────
+  &__status {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: $radius-full;
+    background: $success;
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  &__status-text {
+    font-size: 0.875rem;
+    color: $text-secondary;
+  }
+
+  // ── Form layout ──────────────────────────────────────────
+  &__form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-md;
+
+    @media (max-width: $bp-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-md;
+
+    label {
+      font-size: 0.875rem;
+      color: $text-secondary;
+      font-weight: 500;
+    }
+
+    input, textarea, select {
+      background: rgba($primary-dark, 0.5);
+      border: 1px solid $border-color;
+      border-radius: $radius-md;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      color: $text-primary;
+      font-family: $font-body;
+      transition: border-color 0.2s ease;
+      outline: none;
+
+      &::placeholder { color: $text-muted; }
+
+      &:focus { border-color: $accent; }
+
+      &.invalid { border-color: #EF5350; }
+    }
+
+    textarea { resize: vertical; min-height: 120px; }
+
+    select {
+      appearance: none;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+
+      option { background: $primary-mid; }
+    }
+  }
+
+  &__error {
+    font-size: 0.8rem;
+    color: #EF5350;
+  }
+
+  // ── Submit button ────────────────────────────────────────
+  &__submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    width: 100%;
+    padding: 12px 24px;
+    background: $accent;
+    color: $primary-dark;
+    border: none;
+    border-radius: $radius-md;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: $font-body;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    margin-bottom: $spacing-lg;
+
+    &:hover:not(:disabled) {
+      background: $accent-hover;
+      transform: translateY(-1px);
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+
+  // ── Success state ────────────────────────────────────────
+  &__success {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-lg;
+    background: rgba($success, 0.08);
+    border: 1px solid rgba($success, 0.2);
+    border-radius: $radius-md;
+    margin-bottom: $spacing-lg;
+    color: $success;
+    font-size: 1.5rem;
+
+    p { margin: 0; }
+  }
+
+  &__success-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: $text-primary;
+  }
+
+  &__success-sub {
+    font-size: 0.875rem;
+    color: $text-secondary;
+    margin-top: 2px !important;
+  }
+
+  // ── Social links row ─────────────────────────────────────
+  &__socials {
+    display: flex;
+    gap: $spacing-sm;
+    padding-top: $spacing-lg;
+    border-top: 1px solid $border-color;
+  }
+
+  &__social-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-xs;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+    font-size: 0.875rem;
+    color: $text-secondary;
+    text-decoration: none;
+    transition: border-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      border-color: $accent;
+      color: $accent;
+    }
+  }
+}
+
+// Loader spin animation
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.spin { animation: spin 0.8s linear infinite; }
+
+// Material snackbar override
+::ng-deep .snackbar--success {
+  background: $success;
+  color: $primary-dark;
+}
