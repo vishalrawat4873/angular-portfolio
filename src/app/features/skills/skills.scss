@@ -1,0 +1,258 @@
+@use 'variables' as *;
+
+.skills {
+
+  // ── Header ───────────────────────────────────────────
+  &__header {
+    max-width: 600px;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba($accent, 0.08);
+    color: $accent;
+    border: 1px solid rgba($accent, 0.2);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: $radius-full;
+    margin-bottom: $spacing-md;
+  }
+
+  &__title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: $text-primary;
+    line-height: 1.15;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__subtitle {
+    font-size: 1rem;
+    color: $text-secondary;
+    line-height: 1.7;
+  }
+
+  // ── Section labels ───────────────────────────────────
+  &__label {
+    font-size: 0.75rem;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__label-sub {
+    font-size: 0.825rem;
+    color: $text-muted;
+    font-style: italic;
+    margin-bottom: $spacing-lg;
+    margin-top: -$spacing-xs;
+  }
+
+  // ── Category cards ───────────────────────────────────
+  &__categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-md;
+    margin-bottom: $spacing-2xl;
+
+    @media (max-width: $bp-md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $bp-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__cat-card {
+    background: $primary-mid;
+    border: 1px solid $border-color;
+    border-radius: $radius-lg;
+    padding: $spacing-lg;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      border-color: rgba($accent, 0.4);
+      transform: translateY(-3px);
+    }
+  }
+
+  &__cat-icon {
+    font-size: 1.5rem;
+    color: $accent;
+    display: block;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__cat-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__cat-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+  }
+
+  &__chip {
+    background: rgba($accent, 0.06);
+    border: 1px solid rgba($accent, 0.15);
+    border-radius: $radius-sm;
+    padding: 3px 9px;
+    font-size: 0.75rem;
+    color: $text-secondary;
+    transition: background 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      background: rgba($accent, 0.12);
+      color: $text-primary;
+    }
+  }
+
+  // ── Divider ──────────────────────────────────────────
+  &__divider {
+    border: none;
+    border-top: 1px solid $border-color;
+    margin: $spacing-2xl 0;
+  }
+
+  // ── Proficiency bars ─────────────────────────────────
+  &__bars {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__bar-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__bar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__bar-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: $text-primary;
+  }
+
+  &__bar-pct {
+    font-size: 0.8rem;
+    color: $accent;
+    font-weight: 600;
+    font-family: $font-mono;
+  }
+
+  &__bar-track {
+    height: 6px;
+    background: rgba($border-color, 0.8);
+    border-radius: $radius-full;
+    overflow: hidden;
+  }
+
+  &__bar-fill {
+    height: 100%;
+    border-radius: $radius-full;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  // ── Tools grid ───────────────────────────────────────
+  &__tools {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: $spacing-sm;
+    margin-bottom: $spacing-2xl;
+
+    @media (max-width: $bp-md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: $bp-sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__tool {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    background: $primary-mid;
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+    padding: 10px 14px;
+    font-size: 0.825rem;
+    color: $text-secondary;
+    transition: border-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      border-color: rgba($accent, 0.3);
+      color: $text-primary;
+    }
+  }
+
+  &__tool-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: $radius-full;
+    flex-shrink: 0;
+  }
+
+  // ── Currently learning ───────────────────────────────
+  &__learning {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-md;
+
+    @media (max-width: $bp-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__learn-card {
+    background: transparent;
+    border: 1px dashed rgba($accent, 0.25);
+    border-radius: $radius-lg;
+    padding: $spacing-lg;
+    text-align: center;
+    transition: border-color 0.2s ease, background 0.2s ease;
+
+    &:hover {
+      border-color: rgba($accent, 0.5);
+      background: rgba($accent, 0.04);
+    }
+  }
+
+  &__learn-icon {
+    font-size: 1.75rem;
+    color: $accent;
+    display: block;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__learn-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__learn-desc {
+    font-size: 0.8rem;
+    color: $text-secondary;
+    line-height: 1.5;
+  }
+}
