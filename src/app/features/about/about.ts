@@ -125,18 +125,18 @@ export class About {
     {
       degree: 'B.Tech in Computer Science Engineering',
       institute: 'Shivalik College of Engineering',
-      period: 'July 2022 – Present',
+      period: 'July 2022 – July 2026',
       location: 'Dehradun, Uttarakhand'
     },
     {
-      degree: 'Class 12th – State Board',
-      institute: 'BJJK Inter College, Sheesham Bara',
+      degree: 'Class 12th',
+      institute: 'Boksa Janjati Krishak Inter College, Sheesham Bara',
       period: '2020',
       location: 'Dehradun, Uttarakhand'
     },
     {
-      degree: 'Class 10th – State Board',
-      institute: 'GIC Kotachami',
+      degree: 'Class 10th ',
+      institute: 'Government Inter College Kotachami',
       period: '2018',
       location: 'Almora, Uttarakhand'
     }
