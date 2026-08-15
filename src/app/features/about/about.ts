@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal';
+
 
 interface SkillGroup {
   category: string;
@@ -38,7 +40,7 @@ interface Certificate {
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink,ScrollRevealDirective],
   templateUrl: './about.html',
   styleUrl: './about.scss'
 })

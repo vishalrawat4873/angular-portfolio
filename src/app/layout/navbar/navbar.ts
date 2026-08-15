@@ -18,13 +18,14 @@ export class Navbar {
   isMenuOpen = signal(false);
   isScrolled = signal(false);
 
-  navLinks: NavLink[] = [
-    { label: 'Home',     route: '/'         },
-    { label: 'About',    route: '/about'    },
-    { label: 'Skills',   route: '/skills'   },
-    { label: 'Projects', route: '/projects' },
-    { label: 'Contact',  route: '/contact'  },
-  ];
+  scrollTo(sectionId: string): void {
+  const el = document.getElementById(sectionId);
+  if (el) {
+    const top = el.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top, behavior: 'smooth' });
+    this.closeMenu();
+  }
+}
 
   @HostListener('window:scroll')
   onScroll(): void {

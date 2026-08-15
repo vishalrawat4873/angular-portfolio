@@ -2,7 +2,7 @@
   <div class="container">
 
     <!-- Header -->
-    <div class="projects__header">
+    <div class="projects__header" appScrollReveal>
       <span class="projects__badge">
         <i class="ti ti-folder" aria-hidden="true"></i>
         Projects
@@ -15,7 +15,7 @@
     </div>
 
     <!-- Filter chips -->
-    <div class="projects__filters">
+    <div class="projects__filters" appScrollReveal [revealDelay]="100">
       @for (filter of filters; track filter.value) {
         <button
           class="projects__filter"
@@ -33,7 +33,7 @@
     </p>
 
     <!-- Project cards -->
-    <div class="projects__grid">
+    <div class="projects__grid" appScrollReveal [revealDelay]="200">
       @for (project of filteredProjects(); track project.title) {
         <div class="projects__card">
 
@@ -79,12 +79,13 @@
                   <i class="ti ti-lock" aria-hidden="true"></i>
                   Private / NDA
                 </span>
-              } @else if (project.liveUrl) {
-                <a>
+              }
+              @if (!project.isPrivate && project.liveUrl) {
+                
                   [href]="project.liveUrl"
                   target="_blank"
                   class="projects__link projects__link--live"
-                >
+                > <a>
                   <i class="ti ti-external-link" aria-hidden="true"></i>
                   Live Demo
                 </a>
@@ -108,7 +109,7 @@
     }
 
     <!-- Bottom note -->
-    <div class="projects__note">
+    <div class="projects__note" appScrollReveal [revealDelay]="100">
       <i class="ti ti-info-circle" aria-hidden="true"></i>
       <p>
         Most projects are client work under NDA. More personal projects

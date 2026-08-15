@@ -2,7 +2,7 @@
   <div class="container">
 
     <!-- Header -->
-    <div class="skills__header">
+    <div class="skills__header" appScrollReveal>
       <span class="skills__badge">
         <i class="ti ti-bulb" aria-hidden="true"></i>
         Skills
@@ -16,7 +16,7 @@
 
     <!-- Category cards -->
     <p class="skills__label">Core Technologies</p>
-    <div class="skills__categories">
+    <div class="skills__categories" appScrollReveal [revealDelay]="100">
       @for (cat of categories; track cat.name) {
         <div class="skills__cat-card">
           <i class="ti {{ cat.icon }} skills__cat-icon" aria-hidden="true"></i>
@@ -37,7 +37,7 @@
     <p class="skills__label-sub">
       Honest self-assessment based on hands-on production experience
     </p>
-    <div class="skills__bars">
+    <div class="skills__bars" appScrollReveal [revealDelay]="150">
       @for (bar of skillBars; track bar.name) {
         <div class="skills__bar-row">
           <div class="skills__bar-header">
@@ -59,7 +59,7 @@
 
     <!-- Tools grid -->
     <p class="skills__label">Tools & Software</p>
-    <div class="skills__tools">
+    <div class="skills__tools" appScrollReveal [revealDelay]="100">
       @for (tool of tools; track tool.name) {
         <div class="skills__tool">
           <span class="skills__tool-dot" [style.background]="tool.color"></span>
@@ -72,7 +72,7 @@
 
     <!-- Currently learning -->
     <p class="skills__label">Currently Learning</p>
-    <div class="skills__learning">
+    <div class="skills__learning" appScrollReveal [revealDelay]="100">
       @for (item of learning; track item.name) {
         <div class="skills__learn-card">
           <i class="ti {{ item.icon }} skills__learn-icon" aria-hidden="true"></i>

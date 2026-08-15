@@ -2,6 +2,10 @@
 @use 'styles/variables' as *;
 @use 'styles/typography';
 @use 'styles/animations';
+@use 'app/features/about/about' as *;
+@use 'app/features/skills/skills' as *;
+@use 'app/features/projects/projects' as *;
+@use 'app/features/contact/contact' as *;
 
 html {
   @include mat.theme((

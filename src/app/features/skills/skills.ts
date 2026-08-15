@@ -1,5 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal';
+
 
 interface SkillCategory {
   icon: string;
@@ -27,7 +29,7 @@ interface Learning {
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ScrollRevealDirective],
   templateUrl: './skills.html',
   styleUrl: './skills.scss'
 })

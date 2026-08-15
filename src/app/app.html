@@ -1,7 +1,11 @@
 <app-navbar />
-
-<main>
-  <router-outlet />
-</main>
-
+<div class="scroll-progress-bar" id="scrollProgress"></div>
+<router-outlet />
 <app-footer />
+<button
+  class="scroll-top-btn"
+  (click)="scrollService.scrollToTop()"
+  aria-label="Scroll to top"
+>
+  <i class="ti ti-arrow-up" aria-hidden="true"></i>
+</button>

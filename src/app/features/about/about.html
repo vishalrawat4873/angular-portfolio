@@ -2,7 +2,7 @@
   <div class="container">
 
     <!-- Header -->
-    <div class="about__header">
+    <div class="about__header" appScrollReveal>
       <span class="about__badge">
         <i class="ti ti-user" aria-hidden="true"></i>
         About me
@@ -14,7 +14,7 @@
     </div>
 
     <!-- Top: Bio + Avatar -->
-    <div class="about__top">
+    <div class="about__top" appScrollReveal [revealDelay]="100">
 
       <div class="about__bio">
         <p>
@@ -70,23 +70,23 @@
         </div>
       </div>
 
-    <!-- Avatar -->
-<div class="about__avatar">
-  <div class="about__avatar-inner">
-    <img
-      src="images/profile.png"
-      alt="Vishal Rawat"
-      class="about__avatar-img"
-    />
-  </div>
-  <div class="about__avatar-ring"></div>
-</div>
+      <!-- Avatar -->
+      <div class="about__avatar">
+        <div class="about__avatar-inner">
+          <img
+            src="images/profile.png"
+            alt="Vishal Rawat"
+            class="about__avatar-img"
+          />
+        </div>
+        <div class="about__avatar-ring"></div>
+      </div>
 
     </div>
 
     <!-- What I do cards -->
     <div class="about__section-label">What I do</div>
-    <div class="about__cards">
+    <div class="about__cards" appScrollReveal [revealDelay]="150">
       @for (item of whatIDo; track item.title) {
         <div class="about__card">
           <i class="ti {{ item.icon }} about__card-icon" aria-hidden="true"></i>
@@ -100,7 +100,7 @@
 
     <!-- Skills -->
     <div class="about__section-label">Skills</div>
-    <div class="about__skills">
+    <div class="about__skills" appScrollReveal [revealDelay]="100">
       @for (group of skillGroups; track group.category) {
         <div class="about__skill-group">
           <span class="about__skill-category">{{ group.category }}</span>
@@ -117,7 +117,7 @@
 
     <!-- Experience timeline -->
     <div class="about__section-label">Experience</div>
-    <div class="about__timeline">
+    <div class="about__timeline" appScrollReveal [revealDelay]="100">
       @for (exp of experiences; track exp.role + exp.period; let last = $last) {
         <div class="about__tl-item">
           <div class="about__tl-line">
@@ -155,7 +155,7 @@
     <div class="about__divider"></div>
 
     <!-- Education + Certifications side by side -->
-    <div class="about__bottom-grid">
+    <div class="about__bottom-grid" appScrollReveal [revealDelay]="100">
 
       <div>
         <div class="about__section-label">Education</div>
