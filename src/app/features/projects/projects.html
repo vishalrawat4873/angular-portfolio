@@ -1,1 +1,120 @@
-<p>projects works!</p>
+<section class="projects section">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="projects__header">
+      <span class="projects__badge">
+        <i class="ti ti-folder" aria-hidden="true"></i>
+        Projects
+      </span>
+      <h1 class="projects__title">Things I've built</h1>
+      <p class="projects__subtitle">
+        Production applications and client projects built with modern
+        web technologies — from Angular UIs to ASP.NET Core APIs.
+      </p>
+    </div>
+
+    <!-- Filter chips -->
+    <div class="projects__filters">
+      @for (filter of filters; track filter.value) {
+        <button
+          class="projects__filter"
+          [class.projects__filter--active]="activeFilter() === filter.value"
+          (click)="setFilter(filter.value)"
+        >
+          {{ filter.label }}
+        </button>
+      }
+    </div>
+
+    <!-- Results count -->
+    <p class="projects__count">
+      Showing {{ filteredProjects().length }} project{{ filteredProjects().length !== 1 ? 's' : '' }}
+    </p>
+
+    <!-- Project cards -->
+    <div class="projects__grid">
+      @for (project of filteredProjects(); track project.title) {
+        <div class="projects__card">
+
+          <!-- Card top -->
+          <div class="projects__card-top">
+            <div class="projects__card-header">
+              <h2 class="projects__card-title">{{ project.title }}</h2>
+              <span class="projects__card-badge {{ project.categoryClass }}">
+                {{ project.category }}
+              </span>
+            </div>
+
+            <p class="projects__card-desc">{{ project.description }}</p>
+
+            <!-- Key features -->
+            <div class="projects__features">
+              @for (feature of project.features; track feature) {
+                <span class="projects__feature">
+                  <i class="ti ti-chevron-right" aria-hidden="true"></i>
+                  {{ feature }}
+                </span>
+              }
+            </div>
+
+            <!-- Tech stack chips -->
+            <div class="projects__tech-chips">
+              @for (tech of project.techStack; track tech) {
+                <span class="projects__chip">{{ tech }}</span>
+              }
+            </div>
+          </div>
+
+          <!-- Card bottom -->
+          <div class="projects__card-bottom">
+            <span class="projects__period">
+              <i class="ti ti-calendar" aria-hidden="true"></i>
+              {{ project.period }}
+            </span>
+
+            <div class="projects__links">
+              @if (project.isPrivate) {
+                <span class="projects__link projects__link--private">
+                  <i class="ti ti-lock" aria-hidden="true"></i>
+                  Private / NDA
+                </span>
+              } @else if (project.liveUrl) {
+                <a>
+                  [href]="project.liveUrl"
+                  target="_blank"
+                  class="projects__link projects__link--live"
+                >
+                  <i class="ti ti-external-link" aria-hidden="true"></i>
+                  Live Demo
+                </a>
+              }
+            </div>
+          </div>
+
+        </div>
+      }
+    </div>
+
+    <!-- Empty state -->
+    @if (filteredProjects().length === 0) {
+      <div class="projects__empty">
+        <i class="ti ti-search-off" aria-hidden="true"></i>
+        <p>No projects found for this technology.</p>
+        <button class="projects__reset" (click)="setFilter('All')">
+          Show all projects
+        </button>
+      </div>
+    }
+
+    <!-- Bottom note -->
+    <div class="projects__note">
+      <i class="ti ti-info-circle" aria-hidden="true"></i>
+      <p>
+        Most projects are client work under NDA. More personal projects
+        coming soon as I continue building in public.
+      </p>
+    </div>
+
+  </div>
+</section>

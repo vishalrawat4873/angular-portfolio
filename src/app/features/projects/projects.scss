@@ -1,0 +1,304 @@
+@use 'variables' as *;
+
+.projects {
+
+  // ── Header ───────────────────────────────────────────
+  &__header {
+    max-width: 600px;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba($accent, 0.08);
+    color: $accent;
+    border: 1px solid rgba($accent, 0.2);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: $radius-full;
+    margin-bottom: $spacing-md;
+  }
+
+  &__title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: $text-primary;
+    line-height: 1.15;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__subtitle {
+    font-size: 1rem;
+    color: $text-secondary;
+    line-height: 1.7;
+  }
+
+  // ── Filters ──────────────────────────────────────────
+  &__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
+  }
+
+  &__filter {
+    padding: 7px 18px;
+    border-radius: $radius-full;
+    font-size: 0.825rem;
+    font-weight: 500;
+    border: 1px solid $border-color;
+    color: $text-secondary;
+    background: transparent;
+    cursor: pointer;
+    font-family: $font-body;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: rgba($accent, 0.4);
+      color: $text-primary;
+    }
+
+    &--active {
+      background: rgba($accent, 0.1);
+      border-color: $accent;
+      color: $accent;
+    }
+  }
+
+  // ── Count ────────────────────────────────────────────
+  &__count {
+    font-size: 0.8rem;
+    color: $text-muted;
+    margin-bottom: $spacing-xl;
+  }
+
+  // ── Grid ─────────────────────────────────────────────
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+    margin-bottom: $spacing-2xl;
+  }
+
+  // ── Card ─────────────────────────────────────────────
+  &__card {
+    background: $primary-mid;
+    border: 1px solid $border-color;
+    border-radius: $radius-xl;
+    overflow: hidden;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      border-color: rgba($accent, 0.35);
+      transform: translateY(-3px);
+    }
+  }
+
+  &__card-top {
+    padding: $spacing-xl;
+    border-bottom: 1px solid $border-color;
+  }
+
+  &__card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+    flex-wrap: wrap;
+  }
+
+  &__card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $text-primary;
+    line-height: 1.3;
+  }
+
+  &__card-badge {
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: $radius-full;
+    white-space: nowrap;
+    flex-shrink: 0;
+
+    &.badge--production {
+      background: rgba($success, 0.1);
+      color: $success;
+      border: 1px solid rgba($success, 0.2);
+    }
+
+    &.badge--client {
+      background: rgba($accent, 0.1);
+      color: $accent;
+      border: 1px solid rgba($accent, 0.2);
+    }
+
+    &.badge--personal {
+      background: rgba(#9C27B0, 0.1);
+      color: #BA68C8;
+      border: 1px solid rgba(#9C27B0, 0.2);
+    }
+  }
+
+  &__card-desc {
+    font-size: 0.9rem;
+    color: $text-secondary;
+    line-height: 1.7;
+    margin-bottom: $spacing-md;
+  }
+
+  // ── Features ─────────────────────────────────────────
+  &__features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
+  }
+
+  &__feature {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.8rem;
+    color: $text-secondary;
+
+    i {
+      color: $accent;
+      font-size: 0.7rem;
+    }
+  }
+
+  // ── Tech chips ───────────────────────────────────────
+  &__tech-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+  }
+
+  &__chip {
+    background: rgba($accent, 0.06);
+    border: 1px solid rgba($accent, 0.15);
+    border-radius: $radius-sm;
+    padding: 3px 10px;
+    font-size: 0.75rem;
+    color: $text-secondary;
+    transition: background 0.2s, color 0.2s;
+
+    &:hover {
+      background: rgba($accent, 0.12);
+      color: $text-primary;
+    }
+  }
+
+  // ── Card bottom ──────────────────────────────────────
+  &__card-bottom {
+    padding: $spacing-md $spacing-xl;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+
+  &__period {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    font-size: 0.8rem;
+    color: $text-muted;
+    font-family: $font-mono;
+
+    i { font-size: 0.85rem; }
+  }
+
+  &__links {
+    display: flex;
+    gap: $spacing-sm;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    padding: 6px 14px;
+    border-radius: $radius-md;
+    text-decoration: none;
+    transition: all 0.2s ease;
+
+    &--live {
+      color: $accent;
+      border: 1px solid rgba($accent, 0.3);
+
+      &:hover {
+        background: rgba($accent, 0.08);
+        color: $accent;
+      }
+    }
+
+    &--private {
+      color: $text-muted;
+      border: 1px solid rgba($border-color, 0.5);
+      cursor: default;
+      font-style: italic;
+    }
+  }
+
+  // ── Empty state ──────────────────────────────────────
+  &__empty {
+    text-align: center;
+    padding: $spacing-3xl;
+    color: $text-muted;
+
+    i {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: $spacing-md;
+    }
+
+    p { margin-bottom: $spacing-md; }
+  }
+
+  &__reset {
+    background: transparent;
+    color: $accent;
+    border: 1px solid rgba($accent, 0.3);
+    border-radius: $radius-md;
+    padding: 8px 20px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    font-family: $font-body;
+    transition: background 0.2s ease;
+
+    &:hover { background: rgba($accent, 0.08); }
+  }
+
+  // ── Bottom note ──────────────────────────────────────
+  &__note {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-sm;
+    padding: $spacing-md $spacing-lg;
+    background: rgba($accent, 0.04);
+    border: 1px solid rgba($accent, 0.1);
+    border-radius: $radius-md;
+
+    i {
+      color: $accent;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    p {
+      font-size: 0.825rem;
+      color: $text-muted;
+      line-height: 1.6;
+    }
+  }
+}
