@@ -1,19 +1,31 @@
 <header class="navbar" [class.scrolled]="isScrolled()">
   <div class="navbar__container">
 
-    <a routerLink="/" class="navbar__brand" (click)="closeMenu()">
-  Vishal Rawat
-</a>
+    <a (click)="scrollTo('home')" class="navbar__brand" style="cursor:pointer">
+      <span class="navbar__brand-bracket">&lt;</span>Vishal Rawat<span class="navbar__brand-bracket">/&gt;</span>
+    </a>
 
     <nav class="navbar__links">
-  <a (click)="scrollTo('home')"     class="navbar__link" style="cursor:pointer">Home</a>
-  <a (click)="scrollTo('about')"    class="navbar__link" style="cursor:pointer">About</a>
-  <a (click)="scrollTo('skills')"   class="navbar__link" style="cursor:pointer">Skills</a>
-  <a (click)="scrollTo('projects')" class="navbar__link" style="cursor:pointer">Projects</a>
-  <a (click)="scrollTo('contact')"  class="navbar__link" style="cursor:pointer">Contact</a>
-</nav>
+      @for (link of navLinks; track link.sectionId) {
+        <a (click)="scrollTo(link.sectionId)"
+           class="navbar__link"
+           [class.active]="activeSection() === link.sectionId"
+           style="cursor:pointer">
+          {{ link.label }}
+        </a>
+      }
+    </nav>
 
-    <button class="navbar__hamburger" (click)="toggleMenu()">
+    <a href="Vishal_Resume.pdf"
+       target="_blank"
+       download="Vishal_Resume.pdf"
+       class="navbar__cta">
+      Download CV
+    </a>
+
+    <button class="navbar__hamburger"
+            (click)="toggleMenu()"
+            [attr.aria-expanded]="isMenuOpen()">
       <span class="navbar__hamburger-line" [class.open]="isMenuOpen()"></span>
       <span class="navbar__hamburger-line" [class.open]="isMenuOpen()"></span>
       <span class="navbar__hamburger-line" [class.open]="isMenuOpen()"></span>
@@ -22,10 +34,19 @@
   </div>
 
   <nav class="navbar__mobile-menu" [class.open]="isMenuOpen()">
-  <a (click)="scrollTo('home')"     class="navbar__mobile-link" style="cursor:pointer">Home</a>
-  <a (click)="scrollTo('about')"    class="navbar__mobile-link" style="cursor:pointer">About</a>
-  <a (click)="scrollTo('skills')"   class="navbar__mobile-link" style="cursor:pointer">Skills</a>
-  <a (click)="scrollTo('projects')" class="navbar__mobile-link" style="cursor:pointer">Projects</a>
-  <a (click)="scrollTo('contact')"  class="navbar__mobile-link" style="cursor:pointer">Contact</a>
-</nav>
+    @for (link of navLinks; track link.sectionId) {
+      <a (click)="scrollTo(link.sectionId)"
+         class="navbar__mobile-link"
+         [class.active]="activeSection() === link.sectionId"
+         style="cursor:pointer">
+        {{ link.label }}
+      </a>
+    }
+    <a href="Vishal_Resume.pdf"
+       target="_blank"
+       download
+       class="navbar__cta navbar__cta--mobile">
+      Download CV
+    </a>
+  </nav>
 </header>

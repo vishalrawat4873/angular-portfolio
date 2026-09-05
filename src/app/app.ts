@@ -6,6 +6,8 @@ import { ScrollService } from './core/services/scroll';
 import {
   trigger, transition, style, animate, query
 } from '@angular/animations';
+import { CustomCursorDirective } from './shared/directives/custom-cursor'
+
 
 export const routeAnimations = trigger('routeAnimations', [
   transition('* <=> *', [
@@ -20,7 +22,7 @@ export const routeAnimations = trigger('routeAnimations', [
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Navbar, Footer],
+  imports: [RouterOutlet, Navbar, Footer, CustomCursorDirective],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   animations: [routeAnimations]

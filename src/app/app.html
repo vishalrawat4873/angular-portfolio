@@ -1,7 +1,13 @@
 <app-navbar />
+
 <div class="scroll-progress-bar" id="scrollProgress"></div>
-<router-outlet />
+
+<main appCustomCursor>
+  <router-outlet />
+</main>
+
 <app-footer />
+
 <button
   class="scroll-top-btn"
   (click)="scrollService.scrollToTop()"
