@@ -89,7 +89,7 @@ export class Home implements OnInit, OnDestroy {
 
   allProjects = [
     {
-      title: 'Church Team Management System',
+      title: 'Church Management System',
       category: 'Client Project',
       categoryClass: 'badge--client',
       description: 'A full-featured church service planning application for a US-based client. Handles service order management, team scheduling, media uploads to Azure Blob Storage, drag-and-drop song ordering, and multi-file PDF generation.',

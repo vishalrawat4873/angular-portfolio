@@ -43,7 +43,7 @@ export class Projects {
   // ── Projects data ────────────────────────────────────
   allProjects: Project[] = [
     {
-      title: 'Church Team Management System',
+      title: 'Church Management System',
       category: 'Client Project',
       categoryClass: 'badge--client',
       description:
