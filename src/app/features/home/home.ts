@@ -45,7 +45,7 @@ export class Home implements OnInit, OnDestroy {
 
   // ── Skills ────────────────────────────────────────────
   categories = [
-    { icon: 'ti-layers',     name: 'Frontend',       chips: ['Angular 18', 'TypeScript', 'HTML5', 'CSS3 / SCSS', 'Bootstrap', 'JavaScript'] },
+    { icon: 'ti-device-desktop',     name: 'Frontend',       chips: ['Angular 18', 'TypeScript', 'HTML5', 'CSS3 / SCSS', 'Bootstrap', 'JavaScript'] },
     { icon: 'ti-server',     name: 'Backend',        chips: ['ASP.NET Core', 'C#', 'REST APIs', 'JWT Auth', 'Clean Architecture'] },
     { icon: 'ti-database',   name: 'Database',       chips: ['SQL Server', 'SSMS', 'LINQ', 'EF Core', 'Stored Procedures'] },
     { icon: 'ti-shield-lock',name: 'Auth & Security',chips: ['JWT', 'Role-based Auth', 'OAuth basics'] },
