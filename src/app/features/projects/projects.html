@@ -1,4 +1,4 @@
-<section class="projects section">
+<section class="projects section" id="projects">
   <div class="container">
 
     <!-- Header -->
@@ -9,8 +9,8 @@
       </span>
       <h1 class="projects__title">Things I've built</h1>
       <p class="projects__subtitle">
-        Production applications and client projects built with modern
-        web technologies — from Angular UIs to ASP.NET Core APIs.
+        Production applications and client projects built with modern web technologies —
+        from Angular UIs to ASP.NET Core APIs.
       </p>
     </div>
 
@@ -81,11 +81,11 @@
                 </span>
               }
               @if (!project.isPrivate && project.liveUrl) {
-                
+                <a
                   [href]="project.liveUrl"
                   target="_blank"
                   class="projects__link projects__link--live"
-                > <a>
+                >
                   <i class="ti ti-external-link" aria-hidden="true"></i>
                   Live Demo
                 </a>
