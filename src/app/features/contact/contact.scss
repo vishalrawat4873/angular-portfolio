@@ -43,6 +43,7 @@
 
     @media (max-width: $bp-sm) {
       grid-template-columns: 1fr;
+      margin-bottom: $spacing-xl;
     }
   }
 
@@ -56,6 +57,11 @@
     border-radius: $radius-lg;
     text-decoration: none;
     transition: border-color 0.2s ease, transform 0.2s ease;
+
+    @media (max-width: $bp-sm) {
+      padding: $spacing-md;
+      gap: 12px;
+    }
 
     &:hover {
       border-color: $accent;
@@ -97,7 +103,7 @@
   }
 
   &__card-value {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
     font-weight: 500;
     color: $text-primary;
     white-space: nowrap;
@@ -118,6 +124,10 @@
     border: none;
     border-top: 1px solid $border-color;
     margin-bottom: $spacing-2xl;
+
+    @media (max-width: $bp-sm) {
+      margin-bottom: $spacing-xl;
+    }
   }
 
   // ── Form card ────────────────────────────────────────────
@@ -127,6 +137,12 @@
     border-radius: $radius-xl;
     padding: $spacing-xl;
     max-width: 720px;
+    width: 100%;
+
+    @media (max-width: $bp-sm) {
+      padding: $spacing-md;
+      border-radius: $radius-lg;
+    }
   }
 
   // ── Status indicator ─────────────────────────────────────
@@ -135,6 +151,10 @@
     align-items: center;
     gap: $spacing-sm;
     margin-bottom: $spacing-xl;
+
+    @media (max-width: $bp-sm) {
+      margin-bottom: $spacing-md;
+    }
   }
 
   &__status-dot {
@@ -158,6 +178,7 @@
 
     @media (max-width: $bp-sm) {
       grid-template-columns: 1fr;
+      gap: 0;
     }
   }
 
@@ -166,6 +187,7 @@
     flex-direction: column;
     gap: $spacing-xs;
     margin-bottom: $spacing-md;
+    width: 100%;
 
     label {
       font-size: 0.875rem;
@@ -174,6 +196,9 @@
     }
 
     input, textarea, select {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
       background: rgba($primary-dark, 0.5);
       border: 1px solid $border-color;
       border-radius: $radius-md;
@@ -274,6 +299,11 @@
     gap: $spacing-sm;
     padding-top: $spacing-lg;
     border-top: 1px solid $border-color;
+
+    @media (max-width: 480px) {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
   }
 
   &__social-btn {
@@ -290,6 +320,17 @@
     color: $text-secondary;
     text-decoration: none;
     transition: border-color 0.2s ease, color 0.2s ease;
+
+    @media (max-width: 480px) {
+      flex: 1 1 calc(50% - 8px);
+      min-width: 90px;
+      font-size: 0.8rem;
+      padding: 8px;
+    }
+
+    @media (max-width: 340px) {
+      flex: 1 1 100%;
+    }
 
     &:hover {
       border-color: $accent;

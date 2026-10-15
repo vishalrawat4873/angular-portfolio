@@ -21,8 +21,25 @@ body { background-color: #0D1B2A; color: #94A3B8; min-height: 100vh; -webkit-fon
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #0D1B2A; }
 ::-webkit-scrollbar-thumb { background: #4FC3F7; border-radius: 9999px; }
-.section { padding: 96px 40px; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+img { max-width: 100%; height: auto; display: block; }
+p, h1, h2, h3, h4, h5, h6, span, a, button { overflow-wrap: break-word; }
+.section {
+  padding: clamp(64px, 8vw, 96px) 0;
+
+  @media (max-width: $bp-sm) {
+    padding: clamp(48px, 7vw, 64px) 0;
+  }
+}
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  @media (max-width: $bp-sm) {
+    padding: 0 16px;
+  }
+}
 a { color: #4FC3F7; text-decoration: none; }
 @keyframes bangPop {
   0%   { opacity: 1; transform: translate(-50%, -50%) scale(0.5); }

@@ -25,7 +25,8 @@
 
     <button class="navbar__hamburger"
             (click)="toggleMenu()"
-            [attr.aria-expanded]="isMenuOpen()">
+            [attr.aria-expanded]="isMenuOpen()"
+            aria-label="Toggle navigation menu">
       <span class="navbar__hamburger-line" [class.open]="isMenuOpen()"></span>
       <span class="navbar__hamburger-line" [class.open]="isMenuOpen()"></span>
       <span class="navbar__hamburger-line" [class.open]="isMenuOpen()"></span>
@@ -33,7 +34,10 @@
 
   </div>
 
-  <nav class="navbar__mobile-menu" [class.open]="isMenuOpen()">
+  <nav class="navbar__mobile-menu"
+       [class.open]="isMenuOpen()"
+       [attr.aria-hidden]="!isMenuOpen()"
+       aria-label="Mobile navigation menu">
     @for (link of navLinks; track link.sectionId) {
       <a (click)="scrollTo(link.sectionId)"
          class="navbar__mobile-link"
@@ -44,7 +48,8 @@
     }
     <a href="Vishal_Resume.pdf"
        target="_blank"
-       download
+       download="Vishal_Resume.pdf"
+       (click)="closeMenu()"
        class="navbar__cta navbar__cta--mobile">
       Download CV
     </a>

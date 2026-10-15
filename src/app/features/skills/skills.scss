@@ -76,6 +76,10 @@
     padding: $spacing-lg;
     transition: border-color 0.2s ease, transform 0.2s ease;
 
+    @media (max-width: $bp-sm) {
+      padding: $spacing-md;
+    }
+
     &:hover {
       border-color: rgba($accent, 0.4);
       transform: translateY(-3px);
@@ -122,6 +126,10 @@
     border: none;
     border-top: 1px solid $border-color;
     margin: $spacing-2xl 0;
+
+    @media (max-width: $bp-sm) {
+      margin: $spacing-xl 0;
+    }
   }
 
   // ── Proficiency bars ─────────────────────────────────
@@ -130,6 +138,11 @@
     flex-direction: column;
     gap: $spacing-lg;
     margin-bottom: $spacing-2xl;
+
+    @media (max-width: $bp-sm) {
+      gap: $spacing-md;
+      margin-bottom: $spacing-xl;
+    }
   }
 
   &__bar-row {
@@ -177,12 +190,22 @@
     gap: $spacing-sm;
     margin-bottom: $spacing-2xl;
 
+    @media (max-width: $bp-lg) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
     @media (max-width: $bp-md) {
       grid-template-columns: repeat(3, 1fr);
     }
 
     @media (max-width: $bp-sm) {
       grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      margin-bottom: $spacing-xl;
+    }
+
+    @media (max-width: 340px) {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -197,6 +220,13 @@
     font-size: 0.825rem;
     color: $text-secondary;
     transition: border-color 0.2s ease, color 0.2s ease;
+    min-width: 0;
+
+    @media (max-width: $bp-sm) {
+      padding: 8px 10px;
+      font-size: 0.78rem;
+      gap: 6px;
+    }
 
     &:hover {
       border-color: rgba($accent, 0.3);
@@ -217,6 +247,10 @@
     grid-template-columns: repeat(3, 1fr);
     gap: $spacing-md;
 
+    @media (max-width: $bp-md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
     @media (max-width: $bp-sm) {
       grid-template-columns: 1fr;
     }
@@ -229,6 +263,10 @@
     padding: $spacing-lg;
     text-align: center;
     transition: border-color 0.2s ease, background 0.2s ease;
+
+    @media (max-width: $bp-sm) {
+      padding: $spacing-md;
+    }
 
     &:hover {
       border-color: rgba($accent, 0.5);

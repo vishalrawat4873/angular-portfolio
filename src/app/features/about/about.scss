@@ -44,7 +44,10 @@
     align-items: start;
 
     @media (max-width: $bp-md) {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-lg;
+      margin-bottom: $spacing-xl;
     }
   }
 
@@ -76,6 +79,7 @@
     gap: $spacing-sm;
     font-size: 0.875rem;
     color: $text-secondary;
+    word-break: break-word;
 
     i {
       color: $accent;
@@ -88,6 +92,24 @@
     display: flex;
     gap: $spacing-md;
     flex-wrap: wrap;
+
+    @media (max-width: 480px) {
+      gap: 10px;
+
+      .about__btn {
+        flex: 1 1 calc(50% - 10px);
+        justify-content: center;
+        min-width: 120px;
+        padding: 10px 14px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .about__btn {
+        flex: 1 1 100%;
+        width: 100%;
+      }
+    }
   }
 
   &__btn {
@@ -127,10 +149,18 @@
     flex-shrink: 0;
 
     @media (max-width: $bp-md) {
-      display: none;
+      width: 160px;
+      height: 160px;
+      margin: 0 auto $spacing-md auto;
+      order: -1;
+    }
+
+    @media (max-width: 360px) {
+      width: 140px;
+      height: 140px;
     }
   }
-&__avatar-inner {
+__avatar-inner {
   width: 100%;
   height: 100%;
   border-radius: $radius-xl;
@@ -145,10 +175,10 @@
   color: $accent;
   position: relative;
   z-index: 1;
-  overflow: hidden;   // ← add this line
+  overflow: hidden;
 }
 
-&__avatar-img {
+__avatar-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -181,6 +211,7 @@
 
     @media (max-width: $bp-sm) {
       grid-template-columns: 1fr;
+      margin-bottom: $spacing-xl;
     }
   }
 
@@ -190,6 +221,10 @@
     border-radius: $radius-lg;
     padding: $spacing-lg;
     transition: border-color 0.2s ease, transform 0.2s ease;
+
+    @media (max-width: $bp-sm) {
+      padding: $spacing-md;
+    }
 
     &:hover {
       border-color: rgba($accent, 0.4);
@@ -222,6 +257,10 @@
     border: none;
     border-top: 1px solid $border-color;
     margin: $spacing-2xl 0;
+
+    @media (max-width: $bp-sm) {
+      margin: $spacing-xl 0;
+    }
   }
 
   // ── Skills ───────────────────────────────────────────
@@ -230,6 +269,10 @@
     flex-direction: column;
     gap: $spacing-md;
     margin-bottom: $spacing-2xl;
+
+    @media (max-width: $bp-sm) {
+      margin-bottom: $spacing-xl;
+    }
   }
 
   &__skill-group {
@@ -276,12 +319,21 @@
   // ── Timeline ─────────────────────────────────────────
   &__timeline {
     margin-bottom: $spacing-2xl;
+
+    @media (max-width: $bp-sm) {
+      margin-bottom: $spacing-xl;
+    }
   }
 
   &__tl-item {
     display: flex;
     gap: $spacing-lg;
     margin-bottom: $spacing-xl;
+
+    @media (max-width: $bp-sm) {
+      gap: $spacing-md;
+      margin-bottom: $spacing-lg;
+    }
   }
 
   &__tl-line {
@@ -319,6 +371,7 @@
   &__tl-content {
     flex: 1;
     padding-bottom: $spacing-lg;
+    min-width: 0;
   }
 
   &__tl-header {
@@ -328,6 +381,11 @@
     margin-bottom: $spacing-sm;
     flex-wrap: wrap;
     gap: $spacing-sm;
+
+    @media (max-width: $bp-sm) {
+      flex-direction: column;
+      gap: 4px;
+    }
   }
 
   &__tl-role {
@@ -401,6 +459,7 @@
 
     @media (max-width: $bp-md) {
       grid-template-columns: 1fr;
+      gap: $spacing-xl;
     }
   }
 
@@ -421,6 +480,11 @@
     border: 1px solid $border-color;
     border-radius: $radius-md;
     transition: border-color 0.2s ease;
+
+    @media (max-width: $bp-sm) {
+      padding: 12px;
+      gap: 12px;
+    }
 
     &:hover { border-color: rgba($accent, 0.3); }
   }

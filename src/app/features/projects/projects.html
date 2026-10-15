@@ -50,7 +50,7 @@
 
             <!-- Key features -->
             <div class="projects__features">
-              @for (feature of project.features; track feature) {
+              @for (feature of project.features.slice(0, 3); track feature) {
                 <span class="projects__feature">
                   <i class="ti ti-chevron-right" aria-hidden="true"></i>
                   {{ feature }}

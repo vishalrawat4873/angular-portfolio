@@ -8,8 +8,15 @@ export class CustomCursorDirective implements OnInit, OnDestroy {
 
   private cursor!: HTMLElement;
   private trail: HTMLElement[] = [];
+  private isPointerFine = false;
 
   ngOnInit(): void {
+    if (typeof window !== 'undefined') {
+      this.isPointerFine = window.matchMedia('(pointer: fine)').matches;
+    }
+    if (!this.isPointerFine) {
+      return;
+    }
     this.createCursor();
     document.addEventListener('mousemove', this.onMouseMove);
     document.addEventListener('click', this.onMouseClick);
@@ -17,6 +24,9 @@ export class CustomCursorDirective implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (!this.isPointerFine) {
+      return;
+    }
     document.removeEventListener('mousemove', this.onMouseMove);
     document.removeEventListener('click', this.onMouseClick);
     this.cursor?.remove();
