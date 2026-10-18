@@ -22,7 +22,19 @@
         with hands-on experience building web applications using
         Angular, ASP.NET, and SQL Server. I love turning complex
         problems into clean, scalable solutions — and sharing what
-        I learn with 3K+ subscribers.
+        I learn with
+        <a href="https://www.youtube.com/@vishalrawat770"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="hero__yt-pill"
+           title="Visit @vishalrawat770 on YouTube (3K+ Subscribers)">
+          <span class="hero__yt-pill-icon">
+            <i class="ti ti-brand-youtube" aria-hidden="true"></i>
+          </span>
+          <span class="hero__yt-pill-text">3K+ subscribers</span>
+          <i class="ti ti-arrow-up-right hero__yt-pill-arrow" aria-hidden="true"></i>
+        </a>
+        on YouTube.
       </p>
 
       <div class="hero__actions">
@@ -35,21 +47,47 @@
           <i class="ti ti-download" aria-hidden="true"></i>
           Download CV
         </a>
-        <a href="https://www.youtube.com/@vishalrawat770" target="_blank"
-           class="hero__btn hero__btn--ghost">
+        <a href="https://www.youtube.com/@vishalrawat770" target="_blank" rel="noopener noreferrer"
+           class="hero__btn hero__btn--ghost hero__btn--youtube"
+           title="Visit YouTube Channel">
           <i class="ti ti-brand-youtube" aria-hidden="true"></i>
           YouTube
+          <span class="hero__btn-yt-badge">3K</span>
         </a>
       </div>
 
       <div class="hero__stats" appScrollReveal [revealDelay]="200">
         @for (stat of stats; track stat.label) {
-          <div class="hero__stat">
-            <span class="hero__stat-value">
-              {{ stat.value }}<span class="hero__stat-suffix">{{ stat.suffix }}</span>
-            </span>
-            <span class="hero__stat-label">{{ stat.label }}</span>
-          </div>
+          @if (stat.link) {
+            <a [href]="stat.link"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="hero__stat hero__stat--link"
+               [class.hero__stat--youtube]="stat.isYoutube"
+               [title]="stat.isYoutube ? 'Visit YouTube channel with ' + stat.value + stat.suffix + ' subscribers' : stat.label">
+              <div class="hero__stat-header">
+                <span class="hero__stat-value">
+                  {{ stat.value }}<span class="hero__stat-suffix" [class.hero__stat-suffix--youtube]="stat.isYoutube">{{ stat.suffix }}</span>
+                </span>
+                @if (stat.isYoutube) {
+                  <span class="hero__stat-yt-badge">
+                    <i class="ti ti-brand-youtube" aria-hidden="true"></i>
+                  </span>
+                }
+              </div>
+              <span class="hero__stat-label">
+                {{ stat.label }}
+                <i class="ti ti-arrow-up-right hero__stat-link-arrow" aria-hidden="true"></i>
+              </span>
+            </a>
+          } @else {
+            <div class="hero__stat">
+              <span class="hero__stat-value">
+                {{ stat.value }}<span class="hero__stat-suffix">{{ stat.suffix }}</span>
+              </span>
+              <span class="hero__stat-label">{{ stat.label }}</span>
+            </div>
+          }
         }
       </div>
 
@@ -85,11 +123,15 @@
       <div class="about__bio">
         <p>I'm <strong>Vishal Rawat</strong>, a Full Stack Developer skilled in Angular, ASP.NET Core, C#, TypeScript, and SQL Server. I build scalable web applications with secure APIs and clean architecture.</p>
         <p>Currently working at <span class="about__highlight">Evince Development</span>, I've gained hands-on production experience — from database design to responsive Angular UIs with JWT-based authentication.</p>
-        <p>Outside of work, I run a YouTube channel with <span class="about__highlight">2.8K+ subscribers</span> where I share my tech learning journey. I'm also NCC certified (A Grade) which shaped my discipline and leadership skills.</p>
+        <p>Outside of work, I run a YouTube channel with <a href="https://www.youtube.com/@vishalrawat770" target="_blank" rel="noopener noreferrer" class="about__yt-highlight" title="Visit @vishalrawat770 on YouTube"><i class="ti ti-brand-youtube" aria-hidden="true"></i> <span>3K+ subscribers</span> <i class="ti ti-arrow-up-right about__yt-arrow" aria-hidden="true"></i></a> where I share my tech learning journey. I'm also NCC certified (A Grade) which shaped my discipline and leadership skills.</p>
         <div class="about__meta">
           <div class="about__meta-item"><i class="ti ti-map-pin" aria-hidden="true"></i> Ahmedabad, Gujarat, India</div>
           <div class="about__meta-item"><i class="ti ti-mail" aria-hidden="true"></i> vishalrawatssr@gmail.com</div>
-          <div class="about__meta-item"><i class="ti ti-brand-youtube" aria-hidden="true"></i> 2.8K+ YouTube subscribers</div>
+          <a href="https://www.youtube.com/@vishalrawat770" target="_blank" rel="noopener noreferrer" class="about__meta-item about__meta-item--link" title="Visit YouTube Channel">
+            <i class="ti ti-brand-youtube" aria-hidden="true"></i>
+            <span>3K+ YouTube subscribers</span>
+            <i class="ti ti-arrow-up-right about__meta-arrow" aria-hidden="true"></i>
+          </a>
           <div class="about__meta-item"><i class="ti ti-circle-check" aria-hidden="true"></i> Available for new opportunities</div>
         </div>
         <div class="about__actions">
@@ -241,6 +283,253 @@
         </div>
       }
     </div>
+  </div>
+</section>
+
+
+<!-- ─── EXPERIENCE SECTION ───────────────────────── -->
+<section class="experience section" id="experience">
+  <div class="container">
+
+    <!-- Section Header -->
+    <div class="experience__header" appScrollReveal>
+      <span class="experience__badge">
+        <i class="ti ti-briefcase" aria-hidden="true"></i>
+        Experience &amp; Life Journey
+      </span>
+      <h1 class="experience__title">My Story So Far</h1>
+      <p class="experience__subtitle">Professional journey, leadership, education, and the experiences that shaped who I am.</p>
+    </div>
+
+    <!-- ── 1. Professional Timeline ────────────────── -->
+    <div class="experience__subsection" appScrollReveal [revealDelay]="100">
+      <div class="experience__sub-label">
+        <i class="ti ti-briefcase" aria-hidden="true"></i> Professional Experience
+      </div>
+      <div class="experience__timeline">
+        @for (exp of experiences; track exp.role) {
+          <div class="experience__timeline-item" [class.experience__timeline-item--current]="exp.isCurrent">
+            <div class="experience__timeline-dot">
+              @if (exp.isCurrent) {
+                <span class="experience__timeline-dot-pulse"></span>
+              }
+            </div>
+            <div class="experience__timeline-card">
+              <div class="experience__tl-accent"></div>
+              <div class="experience__timeline-header">
+                <div class="experience__tl-left">
+                  <h3 class="experience__timeline-role">{{ exp.role }}</h3>
+                  <p class="experience__timeline-company">
+                    <i class="ti ti-building-skyscraper" aria-hidden="true"></i>
+                    {{ exp.company }}
+                  </p>
+                  <p class="experience__timeline-location-text">
+                    <i class="ti ti-map-pin" aria-hidden="true"></i>
+                    {{ exp.location }}
+                  </p>
+                </div>
+                <div class="experience__timeline-meta">
+                  <span class="experience__timeline-period">
+                    <i class="ti ti-calendar" aria-hidden="true"></i> {{ exp.period }}
+                  </span>
+                  @if (exp.isCurrent) {
+                    <span class="experience__current-badge">
+                      <span class="experience__current-dot"></span> Current
+                    </span>
+                  }
+                </div>
+              </div>
+              <ul class="experience__timeline-points">
+                @for (point of exp.points; track point) {
+                  <li>
+                    <span class="experience__point-bullet"></span>
+                    {{ point }}
+                  </li>
+                }
+              </ul>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- ── 2. NCC Leadership ────────────────────────── -->
+    <div class="experience__subsection ncc__section" appScrollReveal [revealDelay]="150">
+      <div class="experience__sub-label ncc__label">
+        <i class="ti ti-shield-star" aria-hidden="true"></i> Leadership &amp; NCC
+      </div>
+
+      <div class="ncc__card">
+        <div class="ncc__card-bg"></div>
+
+        <!-- Hero Banner -->
+        <div class="ncc__hero-banner">
+          <div class="ncc__medal-wrap">
+            <div class="ncc__medal-ring"></div>
+            <span class="ncc__medal-emoji">🎖️</span>
+          </div>
+          <div class="ncc__hero-text">
+            <h3 class="ncc__rank-title">Under Officer</h3>
+            <p class="ncc__rank-subtitle">National Cadet Corps · Certificate 'C' AYE GRADE · 2022–25</p>
+          </div>
+          <div class="ncc__stats">
+            <div class="ncc__stat">
+              <span class="ncc__stat-val">AYE</span>
+              <span class="ncc__stat-lbl">Grade</span>
+            </div>
+            <div class="ncc__stat-divider"></div>
+            <div class="ncc__stat">
+              <span class="ncc__stat-val">U.O.</span>
+              <span class="ncc__stat-lbl">Rank</span>
+            </div>
+            <div class="ncc__stat-divider"></div>
+            <div class="ncc__stat">
+              <span class="ncc__stat-val">3+</span>
+              <span class="ncc__stat-lbl">Years</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Body: info + photos side by side -->
+        <div class="ncc__body">
+          <div class="ncc__info">
+            <blockquote class="ncc__quote">
+              <i class="ti ti-quote" aria-hidden="true"></i>
+              Trained to lead, built to deliver
+            </blockquote>
+            <p class="ncc__desc">
+              Achieved the prestigious <strong>Under Officer</strong> rank — one of the highest cadet ranks in the NCC hierarchy.
+              Commanded cadet squads, managed parade drills, and earned an <strong>AYE Grade Certificate</strong> through
+              disciplined training and academic excellence.
+            </p>
+            <div class="ncc__qualities">
+              @for (q of nccQualities; track q.label) {
+                <span class="ncc__quality-chip">
+                  <i class="ti {{ q.icon }}" aria-hidden="true"></i>
+                  {{ q.label }}
+                </span>
+              }
+            </div>
+          </div>
+
+          <div class="ncc__gallery-wrap">
+            <div class="ncc__gallery">
+              <!-- Large Featured Frame (generous width, natural aspect-ratio, zero cutting) -->
+              <div class="ncc__photo ncc__photo--featured">
+                <img
+                  [src]="nccPhotos[activeNccIndex()].src"
+                  [alt]="nccPhotos[activeNccIndex()].alt"
+                  loading="lazy"
+                />
+              </div>
+
+              <!-- Side Thumbnails Stack (Click to view in main frame) -->
+              <div class="ncc__thumbs">
+                @for (photo of nccPhotos; track photo.src; let i = $index) {
+                  <button
+                    type="button"
+                    class="ncc__thumb"
+                    [class.ncc__thumb--active]="i === activeNccIndex()"
+                    (click)="selectNccPhoto(i)"
+                    [attr.aria-label]="'View ' + photo.title"
+                  >
+                    <img [src]="photo.src" [alt]="photo.alt" loading="lazy" />
+                  </button>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 3. Education ─────────────────────────────── -->
+    <div class="experience__subsection" appScrollReveal [revealDelay]="200">
+      <div class="experience__sub-label">
+        <i class="ti ti-school" aria-hidden="true"></i> Education Journey
+      </div>
+
+      <div class="edu__timeline">
+        @for (edu of education; track edu.degree; let last = $last) {
+          <div class="edu__step">
+            <div class="edu__step-left">
+              <div class="edu__step-dot" [class.edu__step-dot--active]="edu.status === 'Graduated' || edu.isCurrent">
+                <i class="ti ti-school" aria-hidden="true"></i>
+              </div>
+              @if (!last) { <div class="edu__step-line"></div> }
+            </div>
+            <div class="edu__step-card" [class.edu__step-card--active]="edu.status === 'Graduated' || edu.isCurrent">
+              <div class="edu__step-year">{{ edu.period }}</div>
+              <h3 class="edu__step-degree">{{ edu.degree }}</h3>
+              <p class="edu__step-institute">{{ edu.institute }}</p>
+              @if (edu.status === 'Graduated') {
+                <span class="edu__graduated-badge">
+                  <i class="ti ti-school" aria-hidden="true"></i> Graduated
+                </span>
+              } @else if (edu.isCurrent) {
+                <span class="edu__current-badge">
+                  <span class="edu__current-dot"></span> Currently Enrolled
+                </span>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- College Memories -->
+      <div class="edu__memories">
+        <div class="edu__memories-header">
+          <i class="ti ti-camera" aria-hidden="true"></i>
+          <span>College Memories</span>
+          <em class="edu__memories-note">— campus days & memories</em>
+        </div>
+        <div class="edu__memories-grid">
+          @for (mem of collegeMemories; track mem.caption) {
+            <div class="edu__memory-slot">
+              @if (mem.src) {
+                <img [src]="mem.src" [alt]="mem.caption" loading="lazy" class="edu__memory-img" />
+              } @else {
+                <div class="edu__memory-placeholder">
+                  <i class="ti ti-camera-plus" aria-hidden="true"></i>
+                  <span>Add Photo</span>
+                </div>
+              }
+              <p class="edu__memory-caption">{{ mem.caption }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 4. Certifications ────────────────────────── -->
+    <div class="experience__subsection" appScrollReveal [revealDelay]="250">
+      <div class="experience__sub-label">
+        <i class="ti ti-certificate" aria-hidden="true"></i> Certifications
+      </div>
+      <div class="cert__grid">
+        @for (cert of certificates; track cert.title) {
+          <div class="cert__card">
+            <div class="cert__top-bar"></div>
+            <div class="cert__icon-wrap">
+              <i class="ti {{ cert.icon }}" aria-hidden="true"></i>
+            </div>
+            <div class="cert__body">
+              <span class="cert__issuer">{{ cert.issuer }}</span>
+              <h4 class="cert__title">{{ cert.title }}</h4>
+              <div class="cert__footer">
+                <span class="cert__date">
+                  <i class="ti ti-calendar-event" aria-hidden="true"></i> {{ cert.date }}
+                </span>
+                <span class="cert__verified">
+                  <i class="ti ti-circle-check" aria-hidden="true"></i> Verified
+                </span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
   </div>
 </section>
 

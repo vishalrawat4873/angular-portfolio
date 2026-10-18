@@ -4,6 +4,52 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ScrollRevealDirective } from '../../shared//directives//scroll-reveal';
 
+// ── Experience section interfaces ─────────────────────
+interface Experience {
+  role: string;
+  company: string;
+  period: string;
+  location: string;
+  isCurrent: boolean;
+  points: string[];
+}
+
+interface Education {
+  degree: string;
+  institute: string;
+  period: string;
+  status: string;
+  isCurrent: boolean;
+}
+
+interface NccPhoto {
+  src: string;
+  alt: string;
+  title: string;
+  badge: string;
+}
+
+interface Certificate {
+  title: string;
+  issuer: string;
+  date: string;
+  icon: string;
+}
+
+interface CollegeMemory {
+  src: string;
+  caption: string;
+}
+
+interface StatItem {
+  value: string;
+  suffix: string;
+  label: string;
+  link?: string;
+  isYoutube?: boolean;
+}
+
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -22,10 +68,16 @@ export class Home implements OnInit, OnDestroy {
   private typeTimer: ReturnType<typeof setTimeout> | null = null;
 
   // ── Stats ─────────────────────────────────────────────
-  stats = [
-    { value: '6',  suffix: '+', label: 'Months experience'   },
+  stats: StatItem[] = [
+    { value: '1',  suffix: '+', label: 'Year experience'   },
     { value: '10', suffix: '+', label: 'Projects built'      },
-    { value: '3',  suffix: 'K', label: 'YouTube subscribers' },
+    { 
+      value: '3',  
+      suffix: 'K', 
+      label: 'YouTube subscribers',
+      link: 'https://www.youtube.com/@vishalrawat770',
+      isYoutube: true 
+    },
     { value: '5',  suffix: '+', label: 'Technologies'        },
   ];
 
@@ -180,7 +232,7 @@ export class Home implements OnInit, OnDestroy {
     this.snackBar.open('Message sent! I\'ll get back to you soon.', 'Close', { duration: 4000 });
   }
 
-  // ── Scroll to section ─────────────────────────────────
+  // ── Scroll to section ─────────────────────────────────────────────────────
   scrollTo(sectionId: string): void {
     const el = document.getElementById(sectionId);
     if (el) {
@@ -188,6 +240,108 @@ export class Home implements OnInit, OnDestroy {
       window.scrollTo({ top, behavior: 'smooth' });
     }
   }
+
+  // ── Experience section data ────────────────────────────────────────────────
+  experiences: Experience[] = [
+    {
+      role: 'Full Stack Developer',
+      company: 'Evince Development',
+      period: 'Dec 2025 – Present',
+      location: 'Ahmedabad, Gujarat',
+      isCurrent: true,
+      points: [
+        'Developing and maintaining production-grade web apps using Classic ASP, ASP.NET Core, and Angular',
+        'Built a Church Management System for a US client — Azure Blob media uploads, drag-and-drop ordering, PDF generation',
+        'Implemented RESTful APIs with role-based JWT authentication in ASP.NET Core',
+        'Collaborated with team using Git branching, code reviews, and agile sprints',
+      ],
+    },
+    {
+      role: 'Full Stack Intern',
+      company: 'Evince Development',
+      period: 'Aug 2024 – Nov 2024',
+      location: 'Ahmedabad, Gujarat',
+      isCurrent: false,
+      points: [
+        'Built a School Management System with Angular frontend and ASP.NET Core REST APIs',
+        'Developed full Admin Panel with user/role management and JWT auth flow',
+        'Wrote optimised SQL Server queries, stored procedures, and EF Core migrations',
+        'Gained hands-on experience with clean architecture and team development workflow',
+      ],
+    },
+  ];
+
+  education: Education[] = [
+    {
+      degree: 'B.Tech in Computer Science & Engineering',
+      institute: 'Shivalik College of Engineering, Dehradun',
+      period: '2022 – 2026',
+      status: 'Graduated',
+      isCurrent: false,
+    },
+    {
+      degree: 'Class 12th',
+      institute: 'BJJK Inter College',
+      period: '2020',
+      status: 'Completed',
+      isCurrent: false,
+    },
+    {
+      degree: 'Class 10th',
+      institute: 'GIC Kotachami',
+      period: '2018',
+      status: 'Completed',
+      isCurrent: false,
+    },
+  ];
+
+  certificates: Certificate[] = [
+    { title: 'C# Programming, .NET, OOP & LINQ', issuer: 'Udemy', date: 'Aug 2025', icon: 'ti-certificate' },
+    { title: 'ASP.NET Core 10 (Complete Guide)', issuer: 'Udemy', date: 'Nov 2025', icon: 'ti-certificate' },
+    { title: 'NCC A Grade Certificate', issuer: 'National Cadet Corps', date: '2022', icon: 'ti-award' },
+  ];
+
+  nccQualities = [
+    { icon: 'ti-shield-check', label: 'Discipline' },
+    { icon: 'ti-crown',        label: 'Leadership' },
+    { icon: 'ti-clock',        label: 'Time Management' },
+    { icon: 'ti-users',        label: 'Team Command' },
+    { icon: 'ti-run',          label: 'Physical Fitness' },
+    { icon: 'ti-brain',        label: 'Decision Making Under Pressure' },
+  ];
+
+  activeNccIndex = signal(0);
+
+  nccPhotos: NccPhoto[] = [
+    {
+      src: 'images/ncc-2.jpg',
+      alt: 'NCC Parade Drill & Rifle Inspection — Under Officer Vishal Rawat',
+      title: 'Parade Drill & Inspection',
+      badge: 'Parade Commander',
+    },
+    {
+      src: 'images/ncc-1.jpg',
+      alt: 'NCC Ceremonial Winter Uniform — Under Officer Vishal Rawat',
+      title: 'Ceremonial Uniform',
+      badge: 'Under Officer',
+    },
+    {
+      src: 'images/ncc-3.jpg',
+      alt: 'NCC Cadet Squad & Troop Command — Vishal Rawat with squad',
+      title: 'Cadet Squad Battalion',
+      badge: 'Squad Command',
+    },
+  ];
+
+  selectNccPhoto(index: number): void {
+    this.activeNccIndex.set(index);
+  }
+
+  collegeMemories: CollegeMemory[] = [
+    { src: 'images/campus-life.jpg', caption: 'Campus Life' },
+    { src: '', caption: 'Tech Fest' },
+    { src: '', caption: 'Graduation Day' },
+  ];
 
   // ── Typewriter ────────────────────────────────────────
   ngOnInit(): void {

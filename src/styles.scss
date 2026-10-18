@@ -6,6 +6,7 @@
 @use 'app/features/skills/skills' as *;
 @use 'app/features/projects/projects' as *;
 @use 'app/features/contact/contact' as *;
+@use 'app/features/home/experience' as *;
 
 html {
   @include mat.theme((

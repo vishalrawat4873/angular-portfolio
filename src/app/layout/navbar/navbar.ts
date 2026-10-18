@@ -23,8 +23,9 @@ export class Navbar implements OnInit, OnDestroy {
     { label: 'Home',     sectionId: 'home'     },
     { label: 'About',    sectionId: 'about'    },
     { label: 'Skills',   sectionId: 'skills'   },
-    { label: 'Projects', sectionId: 'projects' },
-    { label: 'Contact',  sectionId: 'contact'  },
+    { label: 'Projects',   sectionId: 'projects'   },
+    { label: 'Experience', sectionId: 'experience' },
+    { label: 'Contact',    sectionId: 'contact'    },
   ];
 
   private scrollHandler = () => this.updateActiveSection();
@@ -40,7 +41,7 @@ export class Navbar implements OnInit, OnDestroy {
   }
 
   private updateActiveSection(): void {
-    const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+    const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
     const offset = 120; // navbar height + buffer
 
     // Get scroll position from top

@@ -11,14 +11,14 @@
     padding-top: 72px;
   }
 
-  // ── Content wrapper ─────────────────────────────────
+  // â”€â”€ Content wrapper â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   &__content {
     width: 100%;
     max-width: 720px;
     animation: fadeUp 0.7s ease both;
   }
 
-  // ── Badge ───────────────────────────────────────────
+  // â”€â”€ Badge â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   &__badge {
     display: inline-flex;
     align-items: center;
@@ -47,7 +47,7 @@
     animation: pulseGlow 2s ease-in-out infinite;
   }
 
-  // ── Name + Greeting ─────────────────────────────────
+  // â”€â”€ Name + Greeting â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   &__greeting {
     font-size: clamp(0.95rem, 3vw, 1.1rem);
     color: $text-secondary;
@@ -68,7 +68,7 @@
     }
   }
 
-  // ── Typewriter ──────────────────────────────────────
+  // â”€â”€ Typewriter â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   &__typewriter {
     display: flex;
     align-items: center;
@@ -102,21 +102,93 @@
     line-height: 1;
   }
 
-  // ── Bio ─────────────────────────────────────────────
+  // ── Bio ───────────────────────────────────────────────
   &__bio {
     font-size: clamp(0.92rem, 3vw, 1.05rem);
     color: $text-secondary;
-    line-height: 1.7;
+    line-height: 1.75;
     max-width: 580px;
     margin-bottom: $spacing-xl;
 
     @media (max-width: $bp-sm) {
       margin-bottom: $spacing-lg;
-      line-height: 1.6;
+      line-height: 1.65;
     }
   }
 
-  // ── CTA Buttons ─────────────────────────────────────
+  // ── YouTube 3K Highlight Pill ─────────────────────────
+  &__yt-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    vertical-align: middle;
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.14) 0%, rgba(220, 38, 38, 0.08) 100%);
+    border: 1px solid rgba(255, 68, 68, 0.4);
+    padding: 3px 12px 3px 6px;
+    border-radius: $radius-full;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 12px rgba(255, 0, 0, 0.14);
+    position: relative;
+    white-space: nowrap;
+    margin: 0 4px;
+
+    &:hover {
+      background: linear-gradient(135deg, rgba(255, 0, 0, 0.26) 0%, rgba(220, 38, 38, 0.18) 100%);
+      border-color: rgba(255, 68, 68, 0.85);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(255, 0, 0, 0.38);
+
+      .hero__yt-pill-arrow {
+        transform: translate(2px, -2px);
+        color: #ffffff;
+      }
+
+      .hero__yt-pill-icon {
+        transform: scale(1.1);
+        box-shadow: 0 0 14px rgba(255, 0, 0, 0.85);
+      }
+    }
+  }
+
+  &__yt-pill-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: $radius-full;
+    background: #ff0000;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.55);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    animation: ytPulse 2.8s ease-in-out infinite;
+    flex-shrink: 0;
+
+    i {
+      line-height: 1;
+    }
+  }
+
+  &__yt-pill-text {
+    font-family: $font-display;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.01em;
+  }
+
+  &__yt-pill-arrow {
+    font-size: 0.85rem;
+    color: #f87171;
+    transition: transform 0.25s ease, color 0.25s ease;
+  }
+
+  // ── CTA Buttons ───────────────────────────────────────
   &__actions {
     display: flex;
     gap: $spacing-md;
@@ -191,9 +263,44 @@
         transform: translateY(-2px);
       }
     }
+
+    &--youtube {
+      border-color: rgba(255, 68, 68, 0.35);
+      color: #fca5a5;
+
+      i {
+        color: #ff0000;
+        font-size: 1.1rem;
+        transition: transform 0.2s ease;
+      }
+
+      &:hover {
+        border-color: #ff0000;
+        background: rgba(255, 0, 0, 0.12);
+        color: #ffffff;
+        box-shadow: 0 4px 18px rgba(255, 0, 0, 0.28);
+        transform: translateY(-2px);
+
+        i {
+          transform: scale(1.1);
+        }
+      }
+    }
   }
 
-  // ── Stats ────────────────────────────────────────────
+  &__btn-yt-badge {
+    background: rgba(255, 0, 0, 0.25);
+    color: #ff6b6b;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: $radius-full;
+    margin-left: 2px;
+    border: 1px solid rgba(255, 68, 68, 0.4);
+    letter-spacing: 0.02em;
+  }
+
+  // ── Stats ─────────────────────────────────────────────
   &__stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -221,7 +328,10 @@
     border-radius: $radius-lg;
     padding: $spacing-lg;
     text-align: center;
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
 
     @media (max-width: $bp-sm) {
       padding: $spacing-md $spacing-xs;
@@ -232,6 +342,46 @@
       border-color: rgba($accent, 0.4);
       transform: translateY(-3px);
     }
+
+    &--link {
+      cursor: pointer;
+    }
+
+    &--youtube {
+      position: relative;
+      background: linear-gradient(145deg, $primary-mid 0%, rgba(255, 0, 0, 0.08) 100%);
+      border-color: rgba(255, 68, 68, 0.32);
+      box-shadow: 0 2px 14px rgba(255, 0, 0, 0.08);
+
+      &:hover {
+        background: linear-gradient(145deg, $primary-mid 0%, rgba(255, 0, 0, 0.16) 100%);
+        border-color: rgba(255, 68, 68, 0.75);
+        box-shadow: 0 8px 28px rgba(255, 0, 0, 0.26);
+        transform: translateY(-4px);
+
+        .hero__stat-yt-badge {
+          transform: scale(1.12);
+          box-shadow: 0 0 16px rgba(255, 0, 0, 0.85);
+        }
+
+        .hero__stat-link-arrow {
+          transform: translate(2px, -2px);
+          color: #ff4d4d;
+        }
+
+        .hero__stat-label {
+          color: $text-primary;
+        }
+      }
+    }
+  }
+
+  &__stat-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 6px;
   }
 
   &__stat-value {
@@ -244,8 +394,36 @@
     margin-bottom: 6px;
   }
 
+  .hero__stat-header .hero__stat-value {
+    margin-bottom: 0;
+  }
+
   &__stat-suffix {
     color: $accent;
+
+    &--youtube {
+      color: #ff4d4d;
+    }
+  }
+
+  &__stat-yt-badge {
+    width: 26px;
+    height: 26px;
+    border-radius: $radius-full;
+    background: #ff0000;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.55);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    animation: ytPulse 3s ease-in-out infinite;
+    flex-shrink: 0;
+
+    i {
+      line-height: 1;
+    }
   }
 
   &__stat-label {
@@ -253,9 +431,18 @@
     font-size: clamp(0.7rem, 2.5vw, 0.75rem);
     color: $text-muted;
     line-height: 1.4;
+    transition: color 0.2s ease;
   }
 
-  // ── Divider ──────────────────────────────────────────
+  &__stat-link-arrow {
+    font-size: 0.8rem;
+    color: $text-muted;
+    margin-left: 4px;
+    transition: transform 0.2s ease, color 0.2s ease;
+    vertical-align: middle;
+  }
+
+  // â”€â”€ Divider â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   &__divider {
     border: none;
     border-top: 1px solid $border-color;
@@ -266,7 +453,7 @@
     }
   }
 
-  // ── Tech stack ───────────────────────────────────────
+  // â”€â”€ Tech stack â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   &__tech-label {
     font-size: 0.75rem;
     color: $text-muted;

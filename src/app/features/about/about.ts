@@ -60,7 +60,7 @@ export class About {
     {
       icon: 'ti-brand-youtube',
       title: 'Content Creation',
-      description: 'Running a YouTube channel with 2.8K+ subscribers — sharing tech and personal journey.'
+      description: 'Running a YouTube channel with 3k+ subscribers — sharing tech and personal journey.'
     },
     {
       icon: 'ti-robot',
