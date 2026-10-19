@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ScrollRevealDirective } from '../../shared//directives//scroll-reveal';
+import { COMPANY_DATA } from '../../core/data/portfolio.data';
 
 // ── Experience section interfaces ─────────────────────
 interface Experience {
   role: string;
   company: string;
+  companyUrl?: string;
   period: string;
   location: string;
   isCurrent: boolean;
@@ -58,6 +60,8 @@ interface StatItem {
   styleUrl: './home.scss'
 })
 export class Home implements OnInit, OnDestroy {
+
+  readonly companyData = COMPANY_DATA;
 
   // ── Typewriter ────────────────────────────────────────
   roles = ['Full Stack Developer', 'Angular Developer', 'ASP.NET Developer', 'YouTube Content Creator'];
@@ -245,7 +249,8 @@ export class Home implements OnInit, OnDestroy {
   experiences: Experience[] = [
     {
       role: 'Full Stack Developer',
-      company: 'Evince Development',
+      company: COMPANY_DATA.name,
+      companyUrl: COMPANY_DATA.url,
       period: 'Dec 2025 – Present',
       location: 'Ahmedabad, Gujarat',
       isCurrent: true,
@@ -258,7 +263,7 @@ export class Home implements OnInit, OnDestroy {
     },
     {
       role: 'Full Stack Intern',
-      company: 'Evince Development',
+      company: COMPANY_DATA.name,
       period: 'Aug 2024 – Nov 2024',
       location: 'Ahmedabad, Gujarat',
       isCurrent: false,

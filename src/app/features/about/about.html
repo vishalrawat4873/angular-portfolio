@@ -23,7 +23,14 @@
           web applications with secure APIs and clean architecture.
         </p>
         <p>
-          Currently working at <span class="about__highlight">Evince Development</span>,
+          Currently working at
+          <a [href]="companyData.url"
+             target="_blank"
+             rel="noopener noreferrer"
+             [attr.aria-label]="companyData.ariaLabel"
+             class="about__company-link">
+            <span>{{ companyData.name }}</span><i class="ti ti-arrow-up-right about__company-arrow" aria-hidden="true"></i>
+          </a>,
           I've gained hands-on production experience — from database design to
           responsive Angular UIs with JWT-based authentication.
         </p>
@@ -133,7 +140,18 @@
             <div class="about__tl-header">
               <div>
                 <h3 class="about__tl-role">{{ exp.role }}</h3>
-                <span class="about__tl-company">{{ exp.company }}</span>
+                @if (exp.companyUrl) {
+                  <a [href]="exp.companyUrl"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     [attr.aria-label]="companyData.ariaLabel"
+                     class="about__company-link">
+                    {{ exp.company }}
+                    <i class="ti ti-arrow-up-right about__company-arrow" aria-hidden="true"></i>
+                  </a>
+                } @else {
+                  <span class="about__tl-company">{{ exp.company }}</span>
+                }
               </div>
               <div class="about__tl-meta">
                 <span class="about__tl-period">{{ exp.period }}</span>
