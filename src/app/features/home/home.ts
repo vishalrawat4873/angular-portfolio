@@ -286,14 +286,14 @@ export class Home implements OnInit, OnDestroy {
     },
     {
       degree: 'Class 12th',
-      institute: 'BJJK Inter College',
+      institute: 'Boksa Janjati Krishak Inter College Sheeshambara, Dehradun (Uttrakhand)',
       period: '2020',
       status: 'Completed',
       isCurrent: false,
     },
     {
       degree: 'Class 10th',
-      institute: 'GIC Kotachami',
+      institute: 'Government Inter College Kotachami, Almora (Uttrakhand)',
       period: '2018',
       status: 'Completed',
       isCurrent: false,
