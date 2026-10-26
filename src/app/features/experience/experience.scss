@@ -1,0 +1,837 @@
+// experience.scss — re-uses the existing experience.scss styles from home
+// All selectors are already defined in src/app/features/home/experience.scss
+// which is included via home.ts's styleUrl. Since this is a standalone component,
+// we import the same shared SCSS file.
+@use 'variables' as *;
+
+// ══════════════════════════════════════════════════════════════
+//  EXPERIENCE & LIFE JOURNEY  — shared styles (re-export)
+// ══════════════════════════════════════════════════════════════
+
+$ncc-green:      #4A7C59;
+$ncc-light:      #6AAF7B;
+$ncc-glow:       rgba(74, 124, 89, 0.22);
+$ncc-border:     rgba(74, 124, 89, 0.35);
+
+// ──────────────────────────────────────────────────────────────
+//  SHARED SECTION HEADER
+// ──────────────────────────────────────────────────────────────
+.experience {
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $accent;
+    background: rgba($accent, 0.1);
+    border: 1px solid rgba($accent, 0.2);
+    border-radius: $radius-full;
+    padding: 5px 14px;
+    margin-bottom: $spacing-md;
+  }
+
+  &__title {
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    font-weight: 800;
+    color: $text-primary;
+    letter-spacing: -0.02em;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__subtitle {
+    font-size: 1rem;
+    color: $text-secondary;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  // Subsection wrapper
+  &__subsection {
+    margin-bottom: $spacing-3xl;
+  }
+
+  &__sub-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $accent;
+    margin-bottom: $spacing-xl;
+
+    i { font-size: 1rem; }
+  }
+
+  // ── Timeline ──────────────────────────────────────────────
+  &__timeline {
+    position: relative;
+    padding-left: 32px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, $accent 0%, rgba($accent, 0.2) 100%);
+      border-radius: 2px;
+    }
+  }
+
+  &__timeline-item {
+    position: relative;
+    margin-bottom: $spacing-xl;
+
+    &:last-child { margin-bottom: 0; }
+  }
+
+  &__timeline-dot {
+    position: absolute;
+    left: -28px;
+    top: 20px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: $surface-2;
+    border: 2px solid rgba($accent, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+
+    .experience__timeline-item--current & {
+      border-color: $accent;
+      background: rgba($accent, 0.15);
+    }
+  }
+
+  &__timeline-dot-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: $accent;
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  &__timeline-card {
+    position: relative;
+    background: $surface-2;
+    border: 1px solid $border;
+    border-radius: $radius-lg;
+    padding: $spacing-xl;
+    overflow: hidden;
+    transition: border-color 0.25s ease;
+
+    &:hover {
+      border-color: rgba($accent, 0.4);
+    }
+  }
+
+  &__tl-accent {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: rgba($accent, 0.25);
+    border-radius: $radius-lg 0 0 $radius-lg;
+
+    .experience__timeline-item--current & {
+      background: $accent;
+    }
+  }
+
+  &__timeline-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+
+    @media (max-width: $bp-sm) {
+      flex-direction: column;
+      gap: $spacing-sm;
+    }
+  }
+
+  &__tl-left { flex: 1; }
+
+  &__timeline-role {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0 0 6px;
+  }
+
+  &__timeline-company {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.875rem;
+    color: $text-secondary;
+    margin: 0 0 4px;
+
+    i { font-size: 0.9rem; opacity: 0.7; }
+  }
+
+  &__company-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: $accent;
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s;
+
+    &:hover { opacity: 0.8; }
+  }
+
+  &__company-arrow { font-size: 0.75rem; }
+
+  &__timeline-location-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: $text-muted;
+    margin: 0;
+
+    i { font-size: 0.875rem; }
+  }
+
+  &__timeline-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: $spacing-xs;
+    flex-shrink: 0;
+
+    @media (max-width: $bp-sm) {
+      align-items: flex-start;
+    }
+  }
+
+  &__timeline-period {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    color: $text-muted;
+    background: rgba($accent, 0.06);
+    border: 1px solid rgba($accent, 0.12);
+    border-radius: $radius-sm;
+    padding: 3px 10px;
+    white-space: nowrap;
+
+    i { font-size: 0.875rem; }
+  }
+
+  &__current-badge {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $success;
+    background: rgba($success, 0.1);
+    border: 1px solid rgba($success, 0.25);
+    border-radius: $radius-full;
+    padding: 2px 10px;
+  }
+
+  &__current-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $success;
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  &__timeline-points {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: $text-secondary;
+      line-height: 1.6;
+    }
+  }
+
+  &__point-bullet {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $accent;
+    margin-top: 8px;
+  }
+}
+
+// ── NCC Section ──────────────────────────────────────────────
+.ncc {
+  &__section {}
+
+  &__label {
+    color: $ncc-light !important;
+
+    i { color: $ncc-light; }
+  }
+
+  &__card {
+    position: relative;
+    border: 1px solid $ncc-border;
+    border-radius: $radius-xl;
+    overflow: hidden;
+    background: $surface-2;
+  }
+
+  &__card-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top left, $ncc-glow, transparent 60%);
+    pointer-events: none;
+  }
+
+  &__hero-banner {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xl;
+    padding: $spacing-xl $spacing-2xl;
+    border-bottom: 1px solid $ncc-border;
+    background: linear-gradient(135deg, rgba($ncc-green, 0.12), transparent);
+
+    @media (max-width: $bp-md) {
+      flex-direction: column;
+      padding: $spacing-lg;
+      gap: $spacing-lg;
+    }
+  }
+
+  &__medal-wrap {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__medal-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid $ncc-light;
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+
+  &__medal-emoji {
+    font-size: 2rem;
+    z-index: 1;
+  }
+
+  &__hero-text {
+    flex: 1;
+  }
+
+  &__rank-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $text-primary;
+    margin: 0 0 4px;
+  }
+
+  &__rank-subtitle {
+    font-size: 0.85rem;
+    color: $ncc-light;
+    margin: 0;
+  }
+
+  &__stats {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+    margin-left: auto;
+
+    @media (max-width: $bp-md) {
+      margin-left: 0;
+    }
+  }
+
+  &__stat {
+    text-align: center;
+
+    &-val {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: $ncc-light;
+    }
+
+    &-lbl {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: $text-muted;
+    }
+
+    &-divider {
+      width: 1px;
+      height: 36px;
+      background: $ncc-border;
+    }
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-2xl;
+    padding: $spacing-2xl;
+
+    @media (max-width: $bp-md) {
+      grid-template-columns: 1fr;
+      padding: $spacing-lg;
+    }
+  }
+
+  &__info {}
+
+  &__quote {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-style: italic;
+    color: $ncc-light;
+    font-size: 1.05rem;
+    margin: 0 0 $spacing-md;
+
+    i { font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
+  }
+
+  &__desc {
+    font-size: 0.9rem;
+    color: $text-secondary;
+    line-height: 1.7;
+    margin: 0 0 $spacing-lg;
+
+    strong { color: $ncc-light; }
+  }
+
+  &__qualities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+
+  &__quality-chip {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $ncc-light;
+    background: rgba($ncc-green, 0.12);
+    border: 1px solid rgba($ncc-green, 0.3);
+    border-radius: $radius-full;
+    padding: 4px 12px;
+
+    i { font-size: 0.875rem; }
+  }
+
+  &__gallery-wrap {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__gallery {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: $spacing-md;
+    width: 100%;
+  }
+
+  &__photo--featured {
+    border-radius: $radius-lg;
+    overflow: hidden;
+    border: 1px solid $ncc-border;
+    max-height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $surface-1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__thumbs {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+
+  &__thumb {
+    width: 80px;
+    height: 60px;
+    border-radius: $radius-md;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    background: none;
+    padding: 0;
+    transition: border-color 0.2s;
+
+    &--active {
+      border-color: $ncc-light;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+// ── Education ────────────────────────────────────────────────
+.edu {
+  &__timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__step {
+    display: flex;
+    gap: $spacing-lg;
+  }
+
+  &__step-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 36px;
+  }
+
+  &__step-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: $surface-2;
+    border: 2px solid $border;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color 0.25s;
+
+    i {
+      font-size: 1rem;
+      color: $text-muted;
+    }
+
+    &--active {
+      border-color: $accent;
+      background: rgba($accent, 0.1);
+
+      i { color: $accent; }
+    }
+  }
+
+  &__step-line {
+    flex: 1;
+    width: 2px;
+    background: $border;
+    margin: 4px 0;
+    min-height: 20px;
+  }
+
+  &__step-card {
+    flex: 1;
+    background: $surface-2;
+    border: 1px solid $border;
+    border-radius: $radius-lg;
+    padding: $spacing-lg;
+    margin-bottom: $spacing-md;
+    transition: border-color 0.25s;
+
+    &--active {
+      border-color: rgba($accent, 0.35);
+    }
+  }
+
+  &__step-year {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: $accent;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__step-degree {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0 0 4px;
+  }
+
+  &__step-institute {
+    font-size: 0.85rem;
+    color: $text-secondary;
+    margin: 0 0 $spacing-sm;
+  }
+
+  &__graduated-badge,
+  &__current-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-radius: $radius-full;
+    padding: 2px 10px;
+  }
+
+  &__graduated-badge {
+    color: $accent;
+    background: rgba($accent, 0.1);
+    border: 1px solid rgba($accent, 0.2);
+
+    i { font-size: 0.8rem; }
+  }
+
+  &__current-badge {
+    color: $success;
+    background: rgba($success, 0.1);
+    border: 1px solid rgba($success, 0.2);
+  }
+
+  &__current-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $success;
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  &__memories {
+    background: $surface-2;
+    border: 1px solid $border;
+    border-radius: $radius-lg;
+    padding: $spacing-xl;
+  }
+
+  &__memories-header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-lg;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $text-primary;
+
+    i { color: $accent; }
+  }
+
+  &__memories-note {
+    font-size: 0.8rem;
+    color: $text-muted;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  &__memories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-md;
+
+    @media (max-width: $bp-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__memory-slot {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  &__memory-img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: $radius-md;
+    border: 1px solid $border;
+  }
+
+  &__memory-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    border-radius: $radius-md;
+    border: 2px dashed rgba($accent, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: $text-muted;
+    font-size: 0.8rem;
+    background: rgba($accent, 0.03);
+
+    i { font-size: 1.5rem; opacity: 0.5; }
+  }
+
+  &__memory-caption {
+    font-size: 0.78rem;
+    color: $text-muted;
+    text-align: center;
+    margin: 0;
+  }
+}
+
+// ── Certifications ───────────────────────────────────────────
+.cert {
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: $spacing-lg;
+  }
+
+  &__card {
+    position: relative;
+    background: $surface-2;
+    border: 1px solid $border;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+    padding: $spacing-xl;
+    padding-top: $spacing-md;
+
+    &:hover {
+      border-color: rgba($accent, 0.4);
+      transform: translateY(-3px);
+    }
+  }
+
+  &__top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, $accent, rgba($accent, 0.3));
+  }
+
+  &__icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: $radius-md;
+    background: rgba($accent, 0.1);
+    border: 1px solid rgba($accent, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: $spacing-md;
+
+    i {
+      font-size: 1.25rem;
+      color: $accent;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  &__issuer {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $accent;
+  }
+
+  &__title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-sm;
+    margin-top: $spacing-sm;
+  }
+
+  &__date {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.75rem;
+    color: $text-muted;
+
+    i { font-size: 0.875rem; }
+  }
+
+  &__verified {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: $success;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    i { font-size: 0.875rem; }
+  }
+}
+
+// ── Animations ───────────────────────────────────────────────
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.9); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+

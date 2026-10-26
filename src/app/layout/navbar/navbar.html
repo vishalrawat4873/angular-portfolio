@@ -1,16 +1,17 @@
 <header class="navbar" [class.scrolled]="isScrolled()">
   <div class="navbar__container">
 
-    <a (click)="scrollTo('home')" class="navbar__brand" style="cursor:pointer">
+    <a (click)="navigate('home')" class="navbar__brand" style="cursor:pointer" aria-label="Vishal Rawat – Home">
       <span class="navbar__brand-bracket">&lt;</span>Vishal Rawat<span class="navbar__brand-bracket">/&gt;</span>
     </a>
 
-    <nav class="navbar__links">
+    <nav class="navbar__links" aria-label="Primary navigation">
       @for (link of navLinks; track link.sectionId) {
-        <a (click)="scrollTo(link.sectionId)"
+        <a (click)="navigate(link.sectionId)"
            class="navbar__link"
            [class.active]="activeSection() === link.sectionId"
-           style="cursor:pointer">
+           style="cursor:pointer"
+           [attr.aria-current]="activeSection() === link.sectionId ? 'page' : null">
           {{ link.label }}
         </a>
       }
@@ -19,7 +20,8 @@
     <a href="Vishal_Resume.pdf"
        target="_blank"
        download="Vishal_Resume.pdf"
-       class="navbar__cta">
+       class="navbar__cta"
+       aria-label="Download Vishal Rawat's CV (PDF)">
       Download CV
     </a>
 
@@ -39,7 +41,7 @@
        [attr.aria-hidden]="!isMenuOpen()"
        aria-label="Mobile navigation menu">
     @for (link of navLinks; track link.sectionId) {
-      <a (click)="scrollTo(link.sectionId)"
+      <a (click)="navigate(link.sectionId)"
          class="navbar__mobile-link"
          [class.active]="activeSection() === link.sectionId"
          style="cursor:pointer">
@@ -50,7 +52,8 @@
        target="_blank"
        download="Vishal_Resume.pdf"
        (click)="closeMenu()"
-       class="navbar__cta navbar__cta--mobile">
+       class="navbar__cta navbar__cta--mobile"
+       aria-label="Download Vishal Rawat's CV (PDF)">
       Download CV
     </a>
   </nav>
