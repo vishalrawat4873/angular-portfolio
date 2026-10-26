@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy, signal, computed } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, OnDestroy, signal, computed, inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ScrollRevealDirective } from '../../shared//directives//scroll-reveal';
@@ -60,12 +60,12 @@ interface StatItem {
   styleUrl: './home.scss'
 })
 export class Home implements OnInit, OnDestroy {
-
+  private platformId = inject(PLATFORM_ID);
   readonly companyData = COMPANY_DATA;
 
   // ── Typewriter ────────────────────────────────────────
   roles = ['Full Stack Developer', 'Angular Developer', 'ASP.NET Developer', 'YouTube Content Creator'];
-  currentRole = signal('');
+  currentRole = signal('Full Stack Developer');
   currentRoleIndex = 0;
   isDeleting = false;
   charIndex = 0;
@@ -238,6 +238,10 @@ export class Home implements OnInit, OnDestroy {
 
   // ── Scroll to section ─────────────────────────────────────────────────────
   scrollTo(sectionId: string): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     const el = document.getElementById(sectionId);
     if (el) {
       const top = el.getBoundingClientRect().top + window.scrollY - 80;
@@ -350,17 +354,19 @@ export class Home implements OnInit, OnDestroy {
 
   // ── Typewriter ────────────────────────────────────────
   ngOnInit(): void {
-    this.runTypewriter();
+    if (isPlatformBrowser(this.platformId)) {
+      this.runTypewriter();
 
-    // Animate skill bars when skills section visible
-    const observer = new IntersectionObserver(
-      entries => { if (entries[0].isIntersecting) this.animatedBars = true; },
-      { threshold: 0.3 }
-    );
-    setTimeout(() => {
-      const el = document.getElementById('skills');
-      if (el) observer.observe(el);
-    }, 500);
+      // Animate skill bars when skills section visible
+      const observer = new IntersectionObserver(
+        entries => { if (entries[0].isIntersecting) this.animatedBars = true; },
+        { threshold: 0.3 }
+      );
+      setTimeout(() => {
+        const el = document.getElementById('skills');
+        if (el) observer.observe(el);
+      }, 500);
+    }
   }
 
   ngOnDestroy(): void {

@@ -1,17 +1,21 @@
-import { Directive, ElementRef, OnInit, OnDestroy, Input } from '@angular/core';
+import { Directive, ElementRef, OnInit, OnDestroy, Input, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Directive({
   selector: '[appScrollReveal]',
   standalone: true
 })
 export class ScrollRevealDirective implements OnInit, OnDestroy {
-
   @Input() revealDelay = 0;
-  private observer!: IntersectionObserver;
-
-  constructor(private el: ElementRef) {}
+  private observer?: IntersectionObserver;
+  private platformId = inject(PLATFORM_ID);
+  private el = inject(ElementRef);
 
   ngOnInit(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     const el = this.el.nativeElement as HTMLElement;
 
     // Set initial hidden state
@@ -28,7 +32,7 @@ export class ScrollRevealDirective implements OnInit, OnDestroy {
               target.style.opacity = '1';
               target.style.transform = 'translateY(0)';
             }, 50);
-            this.observer.unobserve(entry.target);
+            this.observer?.unobserve(entry.target);
           }
         });
       },
@@ -36,7 +40,7 @@ export class ScrollRevealDirective implements OnInit, OnDestroy {
     );
 
     // Wait for DOM to be fully ready
-    setTimeout(() => this.observer.observe(el), 100);
+    setTimeout(() => this.observer?.observe(el), 100);
   }
 
   ngOnDestroy(): void {

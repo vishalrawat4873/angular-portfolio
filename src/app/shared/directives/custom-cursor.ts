@@ -1,16 +1,21 @@
-import { Directive, OnInit, OnDestroy } from '@angular/core';
+import { Directive, OnInit, OnDestroy, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Directive({
   selector: '[appCustomCursor]',
   standalone: true
 })
 export class CustomCursorDirective implements OnInit, OnDestroy {
-
+  private platformId = inject(PLATFORM_ID);
   private cursor!: HTMLElement;
   private trail: HTMLElement[] = [];
   private isPointerFine = false;
 
   ngOnInit(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     if (typeof window !== 'undefined') {
       this.isPointerFine = window.matchMedia('(pointer: fine)').matches;
     }
@@ -24,7 +29,7 @@ export class CustomCursorDirective implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (!this.isPointerFine) {
+    if (!isPlatformBrowser(this.platformId) || !this.isPointerFine) {
       return;
     }
     document.removeEventListener('mousemove', this.onMouseMove);

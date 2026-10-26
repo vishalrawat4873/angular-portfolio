@@ -1,7 +1,6 @@
-import { Component, OnInit, ElementRef, ViewChildren, QueryList } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, ElementRef, ViewChildren, QueryList, inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal';
-
 
 interface SkillCategory {
   icon: string;
@@ -29,11 +28,12 @@ interface Learning {
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [CommonModule,ScrollRevealDirective],
+  imports: [CommonModule, ScrollRevealDirective],
   templateUrl: './skills.html',
   styleUrl: './skills.scss'
 })
 export class Skills implements OnInit {
+  private platformId = inject(PLATFORM_ID);
 
   // ── Category cards ───────────────────────────────────
   categories: SkillCategory[] = [
@@ -71,13 +71,13 @@ export class Skills implements OnInit {
 
   // ── Proficiency bars ─────────────────────────────────
   skillBars: SkillBar[] = [
-  { name: 'ASP.NET Core + C#',    percentage: 80, color: '#512BD4' },
-  { name: 'Angular + TypeScript', percentage: 75, color: '#DD0031' },
-  { name: 'HTML + CSS + SCSS',    percentage: 85, color: '#264de4' },
-  { name: 'SQL Server',           percentage: 70, color: '#CC2927' },
-  { name: 'Git + GitHub',         percentage: 70, color: '#F05032' },
-  { name: 'JavaScript',           percentage: 75, color: '#F7DF1E' },
-];
+    { name: 'ASP.NET Core + C#',    percentage: 80, color: '#512BD4' },
+    { name: 'Angular + TypeScript', percentage: 75, color: '#DD0031' },
+    { name: 'HTML + CSS + SCSS',    percentage: 85, color: '#264de4' },
+    { name: 'SQL Server',           percentage: 70, color: '#CC2927' },
+    { name: 'Git + GitHub',         percentage: 70, color: '#F05032' },
+    { name: 'JavaScript',           percentage: 75, color: '#F7DF1E' },
+  ];
 
   // ── Tools ────────────────────────────────────────────
   tools: Tool[] = [
@@ -106,6 +106,10 @@ export class Skills implements OnInit {
   @ViewChildren('barFill') barFills!: QueryList<ElementRef>;
 
   ngOnInit(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     // Intersection Observer — animate bars when they scroll into view
     const observer = new IntersectionObserver(
       (entries) => {
